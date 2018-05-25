@@ -1,0 +1,34 @@
+
+<div class="container">
+	
+	<div>
+		<button mat-button [matMenuTriggerFor]="language">Мова</button>
+		<mat-menu #language="matMenu">
+			<button mat-menu-item>Україська</button>
+			<button mat-menu-item>Англійська</button>
+		</mat-menu>
+		<button mat-button [matMenuTriggerFor]="stores">Магазини</button>
+		<mat-menu #stores="matMenu">
+			<button mat-menu-item>Київ Хрещатик</button>
+			<button mat-menu-item>Київ Героїв Майдану</button>
+			<button mat-menu-item>Львів Стрийська</button>
+			<button mat-menu-item>Львів Гнатюка</button>
+			<button mat-menu-item>Івано-Франківськ</button>
+			<button mat-menu-item>Одеса</button>
+		</mat-menu>
+		<button mat-button>Прокат</button>
+		<button mat-button>Акції</button>
+	</div>
+	
+	<div>
+		<button mat-button>Оплата</button>
+		<button mat-button>Доставка</button>
+		<button mat-button>Гарантія</button>		
+		<button mat-button>Контакти</button>
+	</div>
+	
+	
+
+
+
+</div>

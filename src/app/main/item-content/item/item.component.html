@@ -1,0 +1,22 @@
+
+<div class="container">
+	<mat-card class="example-card"  appHoverItem>
+  <mat-card-header>
+    <mat-card-title class="title">{{item.title}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image [src]="item.imageUrl" alt="Image">
+  <mat-card-content>
+	 
+		<!-- <div class="colors">
+			<div class="color" *ngFor="let el of item.colors">
+				<div [appHoverItem]="green"></div>
+			</div>
+		</div> -->
+
+		<p>
+				{{item.price}}грн
+			</p>
+  </mat-card-content>
+ 
+</mat-card>
+</div>
