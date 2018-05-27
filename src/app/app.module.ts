@@ -19,6 +19,10 @@ import { ToolbarComponent } from './main/header/toolbar/toolbar.component';
 import {AccordionModule} from "ng2-accordion";
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
+import { ItemSelectedComponent } from './main/item-content/item-selected/item-selected.component';
+import { BagComponent } from './main/bag/bag.component';
+import { BagService } from './Services/bag.service';
+import { SignupComponent } from './main/signup/signup.component';
 
 
 
@@ -32,7 +36,10 @@ import { HttpClientModule } from '@angular/common/http';
     HoverItemDirective,
     MainComponent,
     NavbarComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ItemSelectedComponent,
+    BagComponent,
+    SignupComponent
   ],
   imports: [
 		BrowserModule,
@@ -53,7 +60,9 @@ import { HttpClientModule } from '@angular/common/http';
 	],
 
 	providers: [ItemsService,
-							NavbarService],
+							NavbarService,
+							BagService],
+							
   bootstrap: [AppComponent]
 })
 export class AppModule { }

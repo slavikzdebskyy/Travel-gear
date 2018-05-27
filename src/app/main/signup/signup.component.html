@@ -1,0 +1,26 @@
+<div class="modal">
+		
+		<form class="sign-up-form">
+				<span (click)="Close()" title="Close Modal">&times;</span>
+				<h1>Реєстрація</h1>
+				<p>Заповніть форму для створення особистого кабінету.</p>
+				<hr>
+				<input type="text" placeholder="Введіть Ім'я" name="name" required>
+				<input type="text" placeholder="Введіть Прізвище" name="lastname" required>
+				<input type="tel" placeholder="Введіть номер телефону" name="phone" required>
+				<input type="text" placeholder="Введіть email" name="email" required>
+				<!-- <label for="email">Email</label> -->
+				<input type="password" placeholder="Введіть пароль" name="psw" required>
+				<!-- <label for="psw-repeat"><b>Repeat Password</b></label> -->
+				<input type="password" placeholder="Підтвердіть пароль" name="psw-repeat" required>
+				<label>
+					<input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px">Запам'ятати мене
+				</label>
+				<div class="buttons-container">
+					<button type="button" (click)="close()">Відміна</button>
+					<button type="submit">Реєстрація</button>
+				</div>
+
+		</form>
+
+</div>

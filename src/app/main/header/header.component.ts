@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+import { BagService } from '../../Services/bag.service';
+import { Router } from '@angular/router';
 
 
 
@@ -10,9 +12,12 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./header.component.less']
 })
 export class HeaderComponent implements OnInit {
-	
+
+	doubleItemMessage: string = '';
 	logoImage: string = './assets/images/logo-highlander.png';
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+	
+	constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer,
+							private bagService: BagService, private router: Router) {
     iconRegistry.addSvgIcon(
         'shopping-cart',
 				sanitizer.bypassSecurityTrustResourceUrl('./assets/images/baseline-shopping_cart-24px.svg'));
@@ -27,5 +32,15 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
 	
   }
-
+	goToMyBag () {
+		let itemsInBag = this.bagService.getAllItemsFromBag();
+		if(itemsInBag.length){
+			this.router.navigate(['mybag']);
+		} else {
+			this.doubleItemMessage = 'show-message';
+					setTimeout(() => {
+						this.doubleItemMessage = '';
+					}, 3000);
+		}
+	}
 }

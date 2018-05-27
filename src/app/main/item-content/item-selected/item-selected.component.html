@@ -1,0 +1,52 @@
+<mat-card class="example-card">
+	<img mat-card-image [src]="item.imageUrl" alt="Image">
+	<div class="description">	
+		<mat-card-header>
+			<mat-card-title class="title">{{item.title}}</mat-card-title>
+		</mat-card-header>
+
+		<!-- <mat-card-content> -->
+			<div class="brand">
+					<img [src]="item.brandLogoUrl" alt="Image brand" class="logo-brand">
+					<h3>{{item.brand}}</h3>
+			</div>
+			
+			<div class="location-size">
+				<span><mat-icon svgIcon="location"></mat-icon>Локація:</span>
+				<ul *ngFor="let location of item.locations">
+					<li>{{location}}</li>
+				</ul>
+			</div>
+			<div class="location-size">
+				<span *ngIf="item.size.length">Доступні розміри:</span>
+				<ul *ngFor="let size of item.size">
+						<li>{{size}}</li>
+				</ul>
+			</div>
+			<p>
+				{{item.description}}
+			</p>
+			
+			<!-- <div class="colors" > -->
+				<!-- <div class="color" *ngFor="let el of item.colors">
+					<div [appHoverItem]="green"></div>
+				</div> -->
+			<!-- </div> -->
+			<span class="price">
+			{{item.price}}грн
+			</span>
+			<div class="buy">				
+				<button mat-raised-button color="warn" (click)="addToBag()">Купити</button>
+				<div class="favorite">
+					<mat-icon svgIcon="stars"></mat-icon>
+					<span>До списку бажань</span>
+				</div>				
+			</div>
+		
+		<!-- </mat-card-content> -->
+	</div>
+
+ <div id="message" [class]="doubleItemMessageClass">{{message}}</div>
+</mat-card>
+
+
