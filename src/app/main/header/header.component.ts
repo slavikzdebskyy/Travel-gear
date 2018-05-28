@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BagService } from '../../Services/bag.service';
@@ -28,10 +28,19 @@ export class HeaderComponent implements OnInit {
 			'stars',
 			sanitizer.bypassSecurityTrustResourceUrl('./assets/images/baseline-stars-24px.svg'));
   }
+	@Output()
+	myEvent = new EventEmitter<boolean>();
 
   ngOnInit() {
 	
-  }
+	}
+	
+	loginOrSignup () {
+		// this.myEvent.emit(true);
+		this.router.navigate(['login']);
+		
+	}
+
 	goToMyBag () {
 		let itemsInBag = this.bagService.getAllItemsFromBag();
 		if(itemsInBag.length){

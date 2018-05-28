@@ -17,14 +17,13 @@
 		font-family: sans-serif;
 		color: #4d4d33;
 		position: relative;
-		z-index: 16;
 		label.help-massage {
-			position: relative;	
-			&:nth-of-type(3) {
+			position: relative;
+			&:nth-of-type(2) {
 				span {
 					top: -25px;
 				}// span
-			}//	label.help-massage:nth-of-type(3) 
+			}//	label.help-massage:nth-of-type(3) 		
 			span {
 				position: absolute;
 				top: -40px;
@@ -34,9 +33,9 @@
 				color: #b30000;
 				min-width: 500px;
 				-webkit-animation: fadeIn 1s;
-				animation: fadeIn 1s;				
-			}//	span
-		}// label.help-massage
+    		animation: fadeIn 1s;
+			}
+		}
 		span.close {
 			position: absolute;
 			right: 35px;
@@ -84,8 +83,8 @@
 			display: flex;
 			display: -webkit-flex;
 			justify-content: space-between;
-			width: 100%;			
-			margin-top: 20px;	
+			width: 100%;
+			margin-top: 20px;			
 			button:not([mat-button]) {
 				font-size: 14px;
 				background-color: #4CAF50;
@@ -96,7 +95,7 @@
 				width: 40%;
 				opacity: 0.9;
 				float: left;
-				outline: none;			
+				outline: none;
 				&:hover {
 					opacity: 1;
 				}// button:hover
@@ -105,6 +104,17 @@
 	}//	form.Sign-up-form
 }//	.modal
 
+
+
+@-webkit-keyframes fadeIn {
+	from {opacity: 0;} 
+	to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+	from {opacity: 0;}
+	to {opacity:1 ;}
+}
 
 @media screen and (max-width: 300px) {
 	.cancelbtn, .signupbtn {

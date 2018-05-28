@@ -23,6 +23,8 @@ import { ItemSelectedComponent } from './main/item-content/item-selected/item-se
 import { BagComponent } from './main/bag/bag.component';
 import { BagService } from './Services/bag.service';
 import { SignupComponent } from './main/signup/signup.component';
+import { UserService } from './Services/user.service';
+import { LoginComponent } from './main/login/login.component';
 
 
 
@@ -39,7 +41,8 @@ import { SignupComponent } from './main/signup/signup.component';
     ToolbarComponent,
     ItemSelectedComponent,
     BagComponent,
-    SignupComponent
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
 		BrowserModule,
@@ -59,9 +62,8 @@ import { SignupComponent } from './main/signup/signup.component';
 		
 	],
 
-	providers: [ItemsService,
-							NavbarService,
-							BagService],
+	providers: [ItemsService,	NavbarService,
+							BagService,	UserService],
 							
   bootstrap: [AppComponent]
 })

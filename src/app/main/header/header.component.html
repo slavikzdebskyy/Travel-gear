@@ -7,7 +7,7 @@
 		<form>
 				<input type="text" name="search" placeholder="Search..">
 		</form>	
-		<div><mat-icon svgIcon="account"></mat-icon><span> Особистий кабінет</span></div>
+		<div (click)="loginOrSignup()"><mat-icon svgIcon="account"></mat-icon><span> Особистий кабінет</span></div>
 		<div (click)="goToMyBag()"><mat-icon svgIcon="shopping-cart"></mat-icon><span> Мої покупки</span></div>
 		<div><mat-icon svgIcon="stars"></mat-icon><span> Список бажань</span></div>	
 	</div>

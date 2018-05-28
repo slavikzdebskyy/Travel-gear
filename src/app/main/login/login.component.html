@@ -1,0 +1,25 @@
+<div class="modal">		
+		<form #loginForm="ngForm" (ngSubmit)="loginUp()">
+			<span (click)="close()" class="close" title="Close Modal">&times;</span>
+			<h1>Авторизація</h1>
+			<hr>
+			<input type="email"  ngModel placeholder="Введіть email" name="email" email required #email="ngModel"><br>
+			<label class="help-massage">
+				<span *ngIf="!email.valid && email.touched">Введіть коректний email, наприклад: example@email.com</span>
+			</label>
+			
+			<input type="password" ngModel placeholder="Введіть пароль" name="password" required #password="ngModel"><br>
+			<label class="help-massage">
+				<span *ngIf="!password.valid && password.touched">Введіть пароль !</span>
+			</label>
+			<label>
+				<input type="checkbox" ngModel checked="checked" name="remember" #remember="ngModel">Запам'ятати мене
+			</label>
+			<div class="buttons-container">
+				<button type="submit">Авторизуватися</button>
+				<!-- <button type="button" (click)="close()">Зареєструватися</button> -->
+				<button mat-button color="warn" (click)="goToSignUp()">Зареєструватися</button>					
+			</div>
+		</form>
+	</div>
+	
