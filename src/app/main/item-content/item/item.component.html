@@ -1,6 +1,17 @@
 
 <div class="container">
+	
 	<mat-card class="example-card"  appHoverItem>
+		<div class="promo-container">
+				<div class="promo" *ngIf="item.promo">
+					{{item.promoTitle}}
+				</div>
+				<div class="favorite" (clock)="addToFavorite(this,item)">
+					<mat-icon svgIcon="stars"></mat-icon>
+				</div>
+				
+
+		</div>
   <mat-card-header>
     <mat-card-title class="title">{{item.title}}</mat-card-title>
   </mat-card-header>
@@ -14,8 +25,9 @@
 		</div> -->
 
 		<p>
-				{{item.price}}грн
-			</p>
+			<span *ngIf="item.oldPrice>0">{{item.oldPrice}}грн</span>
+			{{item.newPrice}}грн
+		</p>
   </mat-card-content>
  
 </mat-card>

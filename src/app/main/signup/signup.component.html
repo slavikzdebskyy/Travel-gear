@@ -10,6 +10,7 @@
 		<label class="help-massage">
 			<span *ngIf="!email.valid && email.touched">Введіть коректний email, наприклад: example@email.com</span>
 		</label>
+		<input type="text" ngModel placeholder="Введіть місто" name="city" required   #city="ngModel">
 		<input type="password" ngModel placeholder="Введіть пароль" name="password" required #password="ngModel"><br>
 		<label class="help-massage">
 			<span *ngIf="!password.valid && password.touched">Введіть пароль !</span>
@@ -22,7 +23,7 @@
 			<input type="checkbox" ngModel checked="checked" name="remember" #remember="ngModel">Запам'ятати мене
 		</label>
 		<div class="buttons-container">
-			<button type="submit">Реєстрація</button>
+			<button type="submit" [disabled]="!isValidForm()">Реєстрація</button>
 			<!-- <button type="button" (click)="close()">Відміна</button>	 -->
 			<button mat-button color="warn" (click)="goToLogin()">Авторизуватися</button>					
 		</div>

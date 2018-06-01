@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-main',
@@ -6,15 +6,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./main.component.less']
 })
 export class MainComponent implements OnInit {
-  @Input()
-	signUpVisible: boolean = false;
-	loginVisible: boolean = false;
-  constructor() { }
 
-  ngOnInit() {
-	}
+	constructor() { }
+
+  ngOnInit() {}	
 	
-	getDataFromMyEvent(value) {
-		this.signUpVisible = value;
-	}
 }

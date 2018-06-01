@@ -32,12 +32,13 @@
 					<div [appHoverItem]="green"></div>
 				</div> -->
 			<!-- </div> -->
+			<span class="old-price" *ngIf="item.oldPrice>0">{{item.oldPrice}}грн</span>
 			<span class="price">
-			{{item.price}}грн
+			{{item.newPrice}}грн
 			</span>
 			<div class="buy">				
 				<button mat-raised-button color="warn" (click)="addToBag()">Купити</button>
-				<div class="favorite">
+				<div class="favorite" (click)="addToFavorite()">
 					<mat-icon svgIcon="stars"></mat-icon>
 					<span>До списку бажань</span>
 				</div>				

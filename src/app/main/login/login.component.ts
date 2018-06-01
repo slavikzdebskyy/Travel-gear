@@ -20,9 +20,26 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
-  }
+		let modal = document.getElementById('modal');
+
+					window.onclick = (event) => {
+			if (event.target == modal) {
+				console.log(modal);
+				this.router.navigate(['']);
+			}
+		}
+
+	
+	}
+	
 	loginUp () {
-		this.userService.login(this.loginForm.value.email, this.loginForm.value.password);
+		let isLogin = this.userService.login(this.loginForm.value.email, this.loginForm.value.password);
+		//  localStorage.getItem('isLog');
+		if(isLogin){
+		this.router.navigate(['user_acount/', this.loginForm.value.email]);
+		} else {
+			this.router.navigate(['']);
+		}
 	}
 
 	close () {
@@ -31,4 +48,8 @@ export class LoginComponent implements OnInit {
 	goToSignUp () {
 		this.router.navigate(['signup']);
 	}
+	closeAll () {
+		
+	}
+
 }

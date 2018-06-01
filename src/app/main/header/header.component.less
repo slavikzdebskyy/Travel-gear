@@ -22,9 +22,31 @@
     height: 100%;
 		div {
 			cursor: pointer;
-			padding: 0px 5px 15px;
+			padding: 0px 5px 15px;			
 			border-radius: 5px;
 			outline: none;
+			span.my-purchases {
+				position: relative;
+				span.my-purchases-count {
+					position: absolute;
+					top: 1px;
+					right: -25px;
+					z-index: 2;
+					color: #992600;
+					font-weight: 600;
+				}//	span.my-purchases-count
+			}//	span.my-purchases
+			span.my-favorite {
+				position: relative;
+				span.my-favorite-count {
+					position: absolute;
+					top: 1px;
+					right: -25px;
+					z-index: 2;
+					color: #992600;
+					font-weight: 600;
+				}//	span.my-favorite-count
+			}//	span.my-favorite
 			span {
 				font-size: 18px;
 				font-family: sans-serif;
@@ -43,11 +65,19 @@
 							0 1px 5px 0 rgba(0,0,0,.12);
 				span {
 					color: #992600;
-				}// span
+					span.my-purchases-count,
+					span.my-favorite-count{
+						color: #fff;
+					}//	span.my-purchases-count
+				}// span			
 				mat-icon {
 					color: #992600;
 				}//	mat-icon
 			}//	div:hover
+			&:last-child,
+			&:nth-last-child(2) {
+				padding-right: 35px;
+			}
 		}//	div
 		form {
 			input[type="text"] {

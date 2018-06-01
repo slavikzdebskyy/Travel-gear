@@ -4,16 +4,18 @@ export class User {
 	phone: number;
 	email: string;
 	password: string;
-	passwordConfirm: string;
+	city: string;
 	rememberMe: boolean;
+	favorite: any;
 
-	constructor (name, lastName, email, phone, password, passwordConfirm, rememberMe) {
+	constructor (name, lastName, email, phone, password, city, rememberMe, favorite) {
 		this.name = name;
 		this.lastName = lastName;
 		this.email = email;
 		this.phone = phone;		
 		this.password = password;
-		this.passwordConfirm = passwordConfirm;
+		this.city = city;
 		this.rememberMe = rememberMe;
+		this.favorite = favorite;
 	}
 }

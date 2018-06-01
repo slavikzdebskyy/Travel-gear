@@ -4,14 +4,16 @@ import { ItemSelectedComponent } from "./main/item-content/item-selected/item-se
 import { BagComponent } from "./main/bag/bag.component";
 import { SignupComponent } from "./main/signup/signup.component";
 import { LoginComponent } from "./main/login/login.component";
+import { AuthLoginService } from "./Services/auth.service";
+import { UserAcountComponent } from "./main/user-acount/user-acount.component";
 
 
 export const Routers = [
-	// {path: 'main', component: MainComponent},
 	{path: 'item', component: ItemContentComponent},
 	{path: 'item/:id', component: ItemSelectedComponent},
 	{path: '', component: ItemContentComponent},
 	{path: 'mybag', component: BagComponent},
 	{path: 'signup', component: SignupComponent},
-	{path: 'login', component: LoginComponent}
+	{path: 'login', component: LoginComponent},
+	{path: 'user_acount/:email', component: UserAcountComponent, canActivate: [AuthLoginService]}
 ]

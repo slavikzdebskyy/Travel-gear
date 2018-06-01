@@ -21,4 +21,16 @@ export class ItemComponent implements OnInit {
 		
   }
 
+	addToFavorite(a,item) {
+
+		window.onclick = (event) => {
+			if (event.target == a) {
+				console.log(a);
+
+			}
+		}
+	}
+
+
+
 }

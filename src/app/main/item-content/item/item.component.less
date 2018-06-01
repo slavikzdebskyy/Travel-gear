@@ -2,12 +2,14 @@
 	position: relative;
 	width: 250px;
 	height: 350px;
-	margin: 20px 10px 0;
+	margin: 20px 10px 0;	
 	.example-card {
 		position: absolute;
 		top: 0;
 		left: 0;
+		z-index: 1;
 		display: flex;
+		display: -webkit-flex;
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
@@ -19,17 +21,56 @@
 		font-weight: 700;
 		color: #4d4d33;
 		cursor: pointer;
-		transition: all 0.3s;		
+		transition: all 0.3s;
+		.promo-container {
+		position: relative;
+			.promo {
+				display: flex;
+				display: -webkit-flex;
+				justify-content: center;
+				align-items: center;
+				min-width: 60px;
+				height: 25px;
+				border-radius: 10px;
+				padding: 0 10px 0;
+				background: #ffff00;
+				color: #992600;
+				position: absolute;
+				top: -20px;
+    		left: -120px;
+				z-index: 2;
+			}//	promo
+			.favorite {
+				color: #992600;
+				position: absolute;			
+				top: -15px;
+				right: -110px;
+				z-index: 5;
+				padding: 10px;
+				cursor: pointer;
+				&:hover {
+					background: yellow;
+					border-radius: 50%;
+				}//	favorite: hover;
+			}//	favorite
+		}//	promo-containe
 		.title {
-			max-width: 170px;
+			max-width: 170px;	
+			padding: 5px;	
+			font-weight: 600;
 		}//	title
 		p {
+			span {
+				color: #4d4d33;
+				font-size: 16px;
+				text-decoration-line: line-through;
+				text-decoration-color: #b30000;
+				padding: 0 10px 0;
+			}
 			font-weight: 700;
 			margin-top: 10px;
-			font-size: 17px;
-			&:hover {
-				color: #992600;
-			}//	p:hover
+			font-size: 18px;
+			color: #992600;
 		}//	p
 		img {
 		width: 200px;

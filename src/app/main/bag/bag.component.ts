@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BagService } from '../../Services/bag.service';
 import { Item } from '../../models/item.model';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -17,20 +17,17 @@ export class BagComponent implements OnInit {
   ngOnInit() {
 		this.itemsInBag = this.bagService.getAllItemsFromBag();
 	}
+	
 
-	ngDoCheck () {
-		
-	}
+
 	removeFromBag (id) {
-		let items = this.bagService.getAllItemsFromBag()
-		for(let i = 0; i < items.length; i++){
-			if(items[i].id === id){
-				this.bagService.removeFromBag(i);
-			}
-		}
-		if(this.bagService.getAllItemsFromBag().length === 0) {
+					this.bagService.removeFromBag(id);	
+		this.itemsInBag = this.bagService.getAllItemsFromBag();
+		if(this.itemsInBag.length === 0) {
 			this.router.navigate(['']);
 		}
-
 	}
+
+
+
 }

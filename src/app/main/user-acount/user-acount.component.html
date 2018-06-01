@@ -1,0 +1,62 @@
+<div class="container">
+	<mat-card>
+		<mat-card-content>
+			<h2>Вітаємо {{user.name}}</h2>
+			<mat-tab-group class="demo-tab-group">
+				<mat-tab label="Мої дані">
+					<div class="demo-tab-content">
+						<form #UserDataForm="ngForm" (ngSubmit)="registerNewUser()">
+							<input type="text" ngModel [placeholder]="user.name" name="name" required   #name="ngModel">
+							<input type="text" ngModel [placeholder]="user.lastName" name="lastname"  required #lastname="ngModel">	
+							<input type="tel" ngModel [placeholder]="user.phone" name="phone"  required #phone="ngModel">
+							<input type="email" ngModel [placeholder]="user.email" name="email" email  required #email="ngModel"><br>
+							<label class="help-massage">
+								<span *ngIf="!email.valid && email.touched">Введіть коректний email, наприклад: example@email.com</span>
+							</label>
+							<input type="text" ngModel [placeholder]="user.city" name="city" required   #city="ngModel">
+							<input type="password" ngModel placeholder="Введіть  старий пароль" name="oldpassword" required #oldpassword="ngModel"><br>
+							<label class="help-massage">
+									<span *ngIf="!oldpassword.valid && oldpassword.touched">Введіть старий пароль !</span>
+								</label>
+							<input type="password" ngModel placeholder="Введіть  новий пароль" name="password" required #password="ngModel"><br>
+							<label class="help-massage">
+								<span *ngIf="!password.valid && password.touched">Введіть новий пароль !</span>
+							</label>
+							<input type="password" ngModel placeholder="Підтвердіть новий пароль" name="passwordconfirm"  required  #passwordconfirm="ngModel"><br>
+							<label class="help-massage">
+								<span *ngIf="password.value != passwordconfirm.value">Паролі не співпадають !</span>
+							</label>
+							<div class="buttons-container">
+								<button type="submit" [disabled]="!isValidForm()">Змінити</button>	
+								<button mat-button color="warn" (click)="cancel()">Відміна</button>												
+							</div>
+						</form>	
+					</div>
+				</mat-tab>
+				<mat-tab label="Мої покупки" selectedIndex>
+					<div class="demo-tab-content">
+						<div class="item-in-bag-content">
+							<div class="item-in-bag" *ngFor="let item of itemsInBag">
+								<app-item [item]="item" routerLink = '/item/{{item.id}}'></app-item>
+								<button mat-raised-button color="warn" (click)="removeFromBag(item.id)">Видалити</button>
+							</div> 						
+							<h2 *ngIf="!isBagEmpty">Ви поки ще не вибрали жодного товару.</h2>
+						</div>
+						<button *ngIf="isBagEmpty" mat-raised-button color="primary">Оформити замовлення</button>
+					</div>				
+				</mat-tab>
+				<mat-tab label="Список бажань">
+						<div class="demo-tab-content">
+							<div class="item-in-bag-content">
+								<div class="item-in-bag" *ngFor="let item of user.favorite">
+									<app-item [item]="item" routerLink = '/item/{{item.id}}'></app-item>
+									<button mat-raised-button color="warn" (click)="removeFromFavorite(item.id)">Не хочу</button>
+								</div> 						
+								<h2 *ngIf="!isFavoriteEmpty">Ви поки ще вподобали жодного товару.</h2>
+							</div>							
+						</div>
+				</mat-tab>				
+			</mat-tab-group>
+		</mat-card-content>
+	</mat-card>
+</div>

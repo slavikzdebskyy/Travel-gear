@@ -7,6 +7,7 @@ import { ItemsService } from './Services/items.service';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCardModule, MatMenuModule, MatSelectModule, MatIconModule  } from '@angular/material';
 import { ItemContentComponent } from './main/item-content/item-content.component';
+import {MatTabsModule} from '@angular/material/tabs';
 import { ItemComponent } from './main/item-content/item/item.component';
 import { HoverItemDirective } from './hover-item.directive';
 import { MainComponent } from './main/main.component';
@@ -25,6 +26,8 @@ import { BagService } from './Services/bag.service';
 import { SignupComponent } from './main/signup/signup.component';
 import { UserService } from './Services/user.service';
 import { LoginComponent } from './main/login/login.component';
+import { AuthLoginService } from './Services/auth.service';
+import { UserAcountComponent } from './main/user-acount/user-acount.component';
 
 
 
@@ -42,7 +45,8 @@ import { LoginComponent } from './main/login/login.component';
     ItemSelectedComponent,
     BagComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    UserAcountComponent
   ],
   imports: [
 		BrowserModule,
@@ -52,6 +56,7 @@ import { LoginComponent } from './main/login/login.component';
 		MatIconModule,
 		MatCardModule,
 		MatSelectModule,
+		MatTabsModule,
 		NoopAnimationsModule,
 		RouterModule.forRoot(Routers),
 		FormsModule,
@@ -63,7 +68,7 @@ import { LoginComponent } from './main/login/login.component';
 	],
 
 	providers: [ItemsService,	NavbarService,
-							BagService,	UserService],
+							BagService,	UserService, AuthLoginService],
 							
   bootstrap: [AppComponent]
 })
