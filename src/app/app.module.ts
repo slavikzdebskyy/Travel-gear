@@ -5,19 +5,21 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './main/header/header.component';
 import { ItemsService } from './Services/items.service';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCardModule, MatMenuModule, MatSelectModule, MatIconModule  } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatMenuModule, MatSelectModule, MatIconModule  } from '@angular/material';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ItemContentComponent } from './main/item-content/item-content.component';
-import {MatTabsModule} from '@angular/material/tabs';
 import { ItemComponent } from './main/item-content/item/item.component';
 import { HoverItemDirective } from './hover-item.directive';
 import { MainComponent } from './main/main.component';
 import { Routers } from './app.routers';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './main/navbar/navbar.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NavbarService } from './Services/navbar.service';
 import { ToolbarComponent } from './main/header/toolbar/toolbar.component';
-import {AccordionModule} from "ng2-accordion";
+import { AccordionModule } from "ng2-accordion";
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemSelectedComponent } from './main/item-content/item-selected/item-selected.component';
@@ -28,6 +30,9 @@ import { UserService } from './Services/user.service';
 import { LoginComponent } from './main/login/login.component';
 import { AuthLoginService } from './Services/auth.service';
 import { UserAcountComponent } from './main/user-acount/user-acount.component';
+import { NavbarMenuChildComponent } from './main/navbar/navbar-menu-child/navbar-menu-child.component';
+import { FilterSidebarComponent } from './main/filter-sidebar/filter-sidebar.component';
+import { NouisliderModule } from 'ng2-nouislider';
 
 
 
@@ -46,7 +51,9 @@ import { UserAcountComponent } from './main/user-acount/user-acount.component';
     BagComponent,
     SignupComponent,
     LoginComponent,
-    UserAcountComponent
+    UserAcountComponent,
+    NavbarMenuChildComponent,
+		FilterSidebarComponent
   ],
   imports: [
 		BrowserModule,
@@ -57,13 +64,16 @@ import { UserAcountComponent } from './main/user-acount/user-acount.component';
 		MatCardModule,
 		MatSelectModule,
 		MatTabsModule,
+		MatToolbarModule,
+		MatCheckboxModule,
 		NoopAnimationsModule,
 		RouterModule.forRoot(Routers),
 		FormsModule,
 		ReactiveFormsModule,
 		AccordionModule,
 		AngularFontAwesomeModule,
-		HttpClientModule
+		HttpClientModule,
+		NouisliderModule	 
 		
 	],
 

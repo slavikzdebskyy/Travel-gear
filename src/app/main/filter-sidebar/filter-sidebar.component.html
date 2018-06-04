@@ -1,0 +1,22 @@
+<div class="filer-container">	
+	<div class="slider">
+		<h5>Ціна</h5>
+		<p> 
+			<span >від </span><span class="price"> {{rangeValue[0]}} </span> грн <span></span>  <span>до</span> <span class="price"> {{rangeValue[1]}} </span> грн
+		</p>
+		<nouislider [connect]="false" [min]="0" [max]="rangeMax" [step]="10" [(ngModel)]="rangeValue"></nouislider>
+	</div>
+			
+
+	
+
+
+	<section class="example-section">
+			<mat-checkbox class="example-margin" [(ngModel)]="checked">Checked</mat-checkbox>
+			<mat-checkbox class="example-margin" [(ngModel)]="indeterminate">Indeterminate</mat-checkbox>
+		</section>
+			
+
+			
+
+		</div>

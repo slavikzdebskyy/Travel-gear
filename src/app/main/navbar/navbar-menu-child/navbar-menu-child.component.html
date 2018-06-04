@@ -1,0 +1,16 @@
+<mat-menu #childMenu="matMenu">
+		<span *ngFor="let child of items">
+
+			<span *ngIf="child.children && child.children.length > 0">
+				<button mat-menu-item color="primary" [matMenuTriggerFor]="menu.childMenu">
+					<span>{{child.viewValue}}</span>
+				</button>
+				<app-navbar-menu-child #menu [items]="child.children"></app-navbar-menu-child>
+			</span>
+			<span *ngIf="!child.children || child.children.length === 0">
+				<button mat-menu-item>
+					<span>{{child.viewValue}}</span>
+				</button>
+			</span>
+		</span>
+	</mat-menu>

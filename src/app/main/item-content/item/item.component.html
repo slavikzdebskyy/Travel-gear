@@ -1,34 +1,30 @@
 
-<div class="container">
+<div class="container" (click)="some()">
 	
 	<mat-card class="example-card"  appHoverItem>
 		<div class="promo-container">
 				<div class="promo" *ngIf="item.promo">
 					{{item.promoTitle}}
 				</div>
-				<div class="favorite" (clock)="addToFavorite(this,item)">
+				<div id="favorite" (click)="some2()">
 					<mat-icon svgIcon="stars"></mat-icon>
 				</div>
-				
-
 		</div>
   <mat-card-header>
     <mat-card-title class="title">{{item.title}}</mat-card-title>
   </mat-card-header>
   <img mat-card-image [src]="item.imageUrl" alt="Image">
-  <mat-card-content>
-	 
-		<!-- <div class="colors">
+  <mat-card-content>	 
+		<div class="colors">
 			<div class="color" *ngFor="let el of item.colors">
-				<div [appHoverItem]="green"></div>
+				<div [ngStyle] = "{background:el}"></div>
 			</div>
-		</div> -->
-
+		</div>
 		<p>
 			<span *ngIf="item.oldPrice>0">{{item.oldPrice}}грн</span>
 			{{item.newPrice}}грн
 		</p>
-  </mat-card-content>
- 
+  </mat-card-content> 
 </mat-card>
+
 </div>

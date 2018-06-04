@@ -1,115 +1,36 @@
 
-<div class="container">
-
+<!-- <div class="container">
 	<accordion [showArrows]="true" [closeOthers]="false">		
-		<accordion-group>
+		<accordion-group *ngFor="let el of menuItems">
 				<accordion-heading>
-						<button mat-button >Спорядження</button>
+						<button mat-button >{{el.viewValue}}</button>
 				</accordion-heading>
-				<accordion-group>
+				<accordion-group *ngFor="let subEl of el.children">
 						<accordion-heading>
-                <button mat-button class="submenu">Рюкзаки</button>
+                <button mat-button class="submenu">{{subEl.viewValue}}</button>
             </accordion-heading>
-						<button mat-menu-item>Рюкзаки для міста</button>
-						<button mat-menu-item>Рюкзаки для тркінгу</button>							
-						<button mat-menu-item>Велорюкзаки</button>
-						<button mat-menu-item>Рюкзаки для ноутбука</button>
-						<button mat-menu-item>Рюкзаки дитячі</button>
-				</accordion-group>
-				<accordion-group>
-						<accordion-heading>
-                <button mat-button class="submenu">Намети</button>
-            </accordion-heading>
-						<button mat-menu-item>Намети одномісні</button>
-						<button mat-menu-item>Намети двомісні</button>							
-						<button mat-menu-item>Намети тримісні</button>
-						<button mat-menu-item>Намети чотиримісні</button>
-				</accordion-group>
-				<accordion-group>
-						<accordion-heading>
-                <button mat-button class="submenu">Спальники</button>
-            </accordion-heading>
-						<button mat-menu-item>Спальники одномісні</button>
-						<button mat-menu-item>Спальники двомісні</button>
-				</accordion-group>
-				<accordion-group>
-						<accordion-heading>
-                <button mat-button class="submenu">Каремати</button>
-            </accordion-heading>
-						<button mat-menu-item>Пінні</button>
-						<button mat-menu-item>Надувні</button>							
-						<button mat-menu-item>Самонадувні</button>
-				</accordion-group>
-				<accordion-group>
-						<accordion-heading>
-                <button mat-button class="submenu">Пальники</button>
-            </accordion-heading>
-						<button mat-menu-item>Пальники спиртові</button>
-						<button mat-menu-item>Пальники газові</button>							
-						<button mat-menu-item>Пальники мультипаливні</button>
-						<button mat-menu-item>Інтегровані системи </button>
-				</accordion-group>
-				<accordion-group>
-						<accordion-heading>
-                <button mat-button class="submenu">Аксесуари</button>
-            </accordion-heading>
-						<button mat-menu-item>Посуд</button>
-						<button mat-menu-item>Ножі, інструменти</button>							
-						<button mat-menu-item>Питні системи</button>
-						<button mat-menu-item>Трекінгові палиці</button>
-						<button mat-menu-item>Інше</button>
-				</accordion-group>	
-		</accordion-group>	
-		
-		<accordion-group>
-				<accordion-heading>
-						<button mat-button>Гірські лижі</button>
-				</accordion-heading>
-		</accordion-group>
+						<button mat-menu-item *ngFor="let item of subEl.children ">Рюкзаки для міста</button>
+						<button mat-menu-item>{{item}}</button>							
+				</accordion-group>			
+		</accordion-group>			
+	</accordion>	
+</div>	 -->
 
-		<accordion-group>
-				<accordion-heading>
-						<button mat-button>Сноубординг</button>
-				</accordion-heading>
-		</accordion-group>
 
-		<accordion-group>
-				<accordion-heading>
-						<button mat-button>Альпінізм, скелелазіння</button>
-				</accordion-heading>
-		</accordion-group>
 
-		<accordion-group>
-				<accordion-heading>
-						<button mat-button>Велосипеди</button>
-				</accordion-heading>
-		</accordion-group>
+<mat-toolbar>
+			<span *ngFor="let item of menuItems">
+					<span *ngIf="item.children && item.children.length > 0">
+						<button mat-button [matMenuTriggerFor]="menu.childMenu">
+							{{item.viewValue}}
+						</button>
+						<app-navbar-menu-child #menu [items]="item.children"></app-navbar-menu-child>
+					</span>
+					<span *ngIf="!item.children || item.children.length === 0">
+						<button mat-button color="primary">
+							{{item.viewValue}}
+						</button>
+					</span>
+			</span>
+</mat-toolbar>
 
-		<accordion-group>
-				<accordion-heading>
-						<button mat-button>Велозапчастини та аксесуари</button>
-				</accordion-heading>
-		</accordion-group>
-
-		<accordion-group>
-				<accordion-heading>
-						<button mat-button>Одяг</button>
-				</accordion-heading>
-		</accordion-group>
-
-		<accordion-group>
-				<accordion-heading>
-						<button mat-button>Взуття</button>
-				</accordion-heading>
-		</accordion-group>
-
-		<accordion-group>
-				<accordion-heading>
-						<button mat-button>Зимові аксесуари</button>
-				</accordion-heading>
-		</accordion-group>
-		
-	</accordion>
-
-	
-</div>	

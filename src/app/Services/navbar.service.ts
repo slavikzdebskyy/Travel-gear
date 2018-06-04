@@ -1,69 +1,163 @@
 import { Item } from "../models/item.model";
 import { Injectable } from "@angular/core";
+import { NavItemInterface } from "../main/interfaces/navbar.interface";
 
 @Injectable()
 export class NavbarService {
-	private equipmentGroups = [
-    {
-      name: 'Рюкзаки',
-      equipment: [
-        { value: 'backpacks<40', viewValue: 'Рюкзаки < 40л' },
-        { value: 'backpacks>40', viewValue: 'Рюкзаки > 40л' },
-        { value: 'backpacks-child', viewValue: 'Рюкзаки дитячі' }
-      ]
-    },
-    {
-      name: 'Намети',
-      equipment: [
-        { value: 'tents-1', viewValue: 'Намети 1-місні' },
-        { value: 'tents-2', viewValue: 'Намети 2-місні' },
-				{ value: 'tents-3', viewValue: 'Намети 3-місні' },
-				{ value: 'tents-4', viewValue: 'Намети 4-місні' }
-      ]
-    },
-    {
-      name: 'Спальники',
-      // disabled: true,
-      equipment: [
-				{ value: 'sleeping-bag-1', viewValue: 'Спальники 1-місні' },
-				{ value: 'sleeping-bag-2', viewValue: 'Спальники 2-місні' },
-             ]
-    },
-    {
-      name: 'Каремати',
-      equipment: [
-        { value: 'tourist-mat-foam', viewValue: 'Пінні' },
-				{ value: 'tourist-mat-inflatable', viewValue: 'Надувні' },
-				{ value: 'tourist-mat-selfinflatable', viewValue: 'Самонадувні' },
-      ]
-		},
-		{
-      name: 'Пальники',
-      equipment: [
-        { value: 'burner-spirit', viewValue: 'Пальники спиртові' },
-				{ value: 'burner-gas', viewValue: 'Пальники газові' },
-				{ value: 'burner-multi', viewValue: 'Пальники мультипаливні' },
-        { value: 'burner-integrater', viewValue: 'Інтегровані системи' },
-      ]
-		},
-		{
-      name: 'Аксесуари',
-      equipment: [
-        { value: 'dishes', viewValue: 'Посуд' },
-				{ value: 'tools', viewValue: 'Ножі, інструменти' },
-				{ value: 'drincing-system', viewValue: 'Питні системи' },
-				{ value: 'trekking-sticks', viewValue: 'Трекінгові палиці' },
-				{ value: 'accessories-other', viewValue: 'Інше' },
-      ]
-    }
-	];
-	
+
+	private menuItems:NavItemInterface []  = [
+		{ value : 'equipments',
+			viewValue : 'Спорядження',
+			children: [
+								{	value: 'backpacks',
+									viewValue: 'Рюкзаки',
+									children: [
+															{ value: 'backpacks<40',
+																viewValue: 'Рюкзаки для міста'
+															},
+															{ value: 'backpacks>40',
+																viewValue: 'Рюкзаки для тркінгу'
+															},
+															{ value: 'backpacks-child',
+																viewValue: 'Велорюкзаки'
+															},
+															{ value: 'backpacks<40',
+																viewValue: 'Рюкзаки для ноутбука'
+															},
+															{ value: 'backpacks>40',
+																viewValue: 'Рюкзаки дитячі'
+															}
+														]
+									},   
+									{	value: 'tents',
+										viewValue: 'Намети',
+										children: [
+																{ value: 'tents-1',
+																	viewValue: 'Намети одномісні'
+																},
+																{ value: 'tents-2',
+																	viewValue: 'Намети двомісні'
+																},
+																{ value: 'tents-3',
+																	viewValue: 'Намети тримісні'
+																},
+																{ value: 'tents-4',
+																	viewValue: 'Намети чотиримісні'
+																}
+															]
+									},
+									{	value: 'sleepingbag',
+										viewValue: 'Спальники',
+										children: [
+																{ value: 'sleeping-bag-1',
+																	viewValue: 'Спальники одномісні'
+																},
+																{ value: 'sleeping-bag-2',
+																	viewValue: 'Спальники двомісні'
+																},
+															]
+									},
+									{	value: 'touristmat',
+										viewValue: 'Каремати',
+										children: [
+																{ value: 'tourist-mat-foam',
+																	viewValue: 'Пінні'
+																},
+																{ value: 'tourist-mat-inflatable',
+																	viewValue: 'Надувні'
+																},
+																{ value: 'tourist-mat-selfinflatable',
+																	viewValue: 'Самонадувні'
+																},
+															]
+									},
+									{	value: 'burner',
+										viewValue: 'Пальники',
+										children: [
+																	{ value: 'burner-spirit',
+																		viewValue: 'Пальники спиртові'
+																	},
+																	{ value: 'burner-gas',
+																		viewValue: 'Пальники газові'
+																	},
+																	{ value: 'burner-multi',
+																		viewValue: 'Пальники мультипаливні'
+																	},
+																	{ value: 'burner-integrater',
+																		viewValue: 'Інтегровані системи'
+																	},
+																]
+									},
+									{	value: 'accessories',
+										viewValue: 'Аксесуари',
+										children: [
+																{ value: 'dishes',
+																	viewValue: 'Посуд'
+																},
+																{ value: 'tools',
+																	viewValue: 'Ножі, інструменти'
+																},
+																{ value: 'drincing-system',
+																	viewValue: 'Питні системи'
+																},
+																{ value: 'trekking-sticks',
+																	viewValue: 'Трекінгові палиці'
+																},
+																{ value: 'accessories-other',
+																	viewValue: 'Інше'
+																},
+															]
+									}
+							]
+			},
+			{
+				value: '',
+				viewValue: 'Гірські лижі',
+				children: []
+			},
+			{
+				value: '',
+				viewValue: 'Сноубординг',
+				children: []
+			},
+			{
+				value: '',
+				viewValue: 'Альпінізм, скелелазіння',
+				children: []
+			},
+			{
+				value: '',
+				viewValue: 'Велосипеди',
+				children: []
+			},
+			{
+				value: '',
+				viewValue: 'Велозапчастини та аксесуари',
+				children: []
+			},
+			{
+				value: '',
+				viewValue: 'Одяг',
+				children: []
+			},
+			{
+				value: '',
+				viewValue: 'Взуття',
+				children: []
+			},
+			{
+				value: '',
+				viewValue: 'Зимові аксесуари',
+				children: []
+			}
+		]
+		
 
 
 
 
-	getEquipmentGroups ():any {
-		return this.equipmentGroups;
+	getMenuItems ():any {
+		return this.menuItems;
 	}
 
 }

@@ -45,3 +45,28 @@
 
 
 }//	container
+mat-toolbar {
+	padding: 0;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	background: #669999 + 25%;	
+	height: auto;	
+	span {
+		button[mat-button] {
+			font-size: 16px;
+			font-weight: 700;
+			color: #fff;
+			padding: 5px;
+			white-space: normal;
+			&:hover {
+				box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),
+								0 2px 2px 0 rgba(0,0,0,.14), 
+							0 1px 5px 0 rgba(0,0,0,.12);
+				color: #992600;
+				background: #669999;
+			}//	button[mat-button]:hover
+		}//	button[mat-button]
+	}//	span
+}//	mat-toolbar

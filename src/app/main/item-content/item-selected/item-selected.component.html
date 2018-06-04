@@ -11,18 +11,29 @@
 					<h3>{{item.brand}}</h3>
 			</div>
 			
-			<div class="location-size">
+			<div class="location">
 				<span><mat-icon svgIcon="location"></mat-icon>Локація:</span>
 				<ul *ngFor="let location of item.locations">
 					<li>{{location}}</li>
 				</ul>
 			</div>
-			<div class="location-size">
+			<div class="size">
 				<span *ngIf="item.size.length">Доступні розміри:</span>
 				<ul *ngFor="let size of item.size">
 						<li>{{size}}</li>
 				</ul>
 			</div>
+			<div class="colors">
+				<span *ngIf="item.colors.length">Доступні кольори:</span>
+				<ul *ngFor="let color of item.colors">
+						<li [ngStyle] = "{background:color}"></li>
+				</ul>
+			</div>
+			<!-- <div class="colors" *ngIf="item.colors.length"> <span>Доступні кольори:</span>
+				<div class="color" *ngFor="let el of item.colors">
+					<div [ngStyle] = "{background:el}"></div>
+				</div>
+			</div> -->
 			<p>
 				{{item.description}}
 			</p>

@@ -16,7 +16,7 @@ export class ItemSelectedComponent implements OnInit {
 	item:any;
 	doubleItemMessageClass: string = '';
 	message :string = '';
-	currentColor:string = '#888';
+	// currentColor:string = '#888';
 
 
 	constructor(private itemService: ItemsService, private route: ActivatedRoute,
@@ -36,7 +36,7 @@ export class ItemSelectedComponent implements OnInit {
   }
 
 	addToBag() {
-		let flag = true;
+		let isThisItemInBag = true;
 		let bagItems = this.bagService.getAllItemsFromBag();
 			for(let i = 0; i < bagItems.length; i++){
 				if(bagItems[i].id === this.item.id){
@@ -45,10 +45,10 @@ export class ItemSelectedComponent implements OnInit {
 					setTimeout(() => {
 						this.doubleItemMessageClass = '';
 					}, 3000);
-					flag = false;				
+					isThisItemInBag = false;				
 				} 
 			}
-		if(flag) {
+		if(isThisItemInBag) {
 			this.bagService.addItemToBag(this.item);
 			this.message = this.item.title + ' успішно додано у кошик.';
 			this.doubleItemMessageClass = 'show-message-done';					
@@ -60,18 +60,18 @@ export class ItemSelectedComponent implements OnInit {
 
 	addToFavorite () {
 		if(this.auth.isLogin()){
-			let flag = true;
+			let isThisItemInFavorites = true;
 			let user = JSON.parse(localStorage.getItem('user'));
-			if(user.favorite.length > 0){
+			if(user.favorite.length > 0){	
 				for(let i = 0; i < user.favorite.length; i++) {
 					if(user.favorite[i].id === this.item.id) {					
-						flag = false;
+						isThisItemInFavorites = false;
 					} else {
-						flag = true;
+						isThisItemInFavorites = true;
 					}
 				}
 			}
-			if(flag){
+			if(isThisItemInFavorites){
 				user.favorite.push(this.item);
 				localStorage.setItem('user', JSON.stringify(user));
 				this.message = this.item.title + ' успішно додано до списку бажань.';
@@ -86,7 +86,7 @@ export class ItemSelectedComponent implements OnInit {
 					this.doubleItemMessageClass = '';
 				}, 3000);
 			}						
-		} else {
+		} else {											
 			this.message = 'Спочатку авторизуйтесь !';
 			this.doubleItemMessageClass = 'show-message-error';					
 			setTimeout(() => {

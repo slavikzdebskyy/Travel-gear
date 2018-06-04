@@ -4,11 +4,11 @@ import { Directive, HostListener, ElementRef, Renderer2, Input } from '@angular/
   selector: '[appHoverItem]'
 })
 export class HoverItemDirective {
-	flag: boolean = false;
-	@Input('appHoverItem') bgColor: string;
+
+	// @Input('appHoverItem') bgColor: string;
 
 	constructor(private element: ElementRef) {
-		this.element.nativeElement.style.backgroundColor = this.bgColor;
+		// this.element.nativeElement.style.backgroundColor = this.bgColor;
 	 }
 	
 	
@@ -28,7 +28,7 @@ export class HoverItemDirective {
 		this.element.nativeElement.style.top = top;
 		this.element.nativeElement.style.left = left;
 	}
-	private setBgColor(color: string) {
-    this.element.nativeElement.style.backgroundColor = color;
-  }
+	// private setBgColor(color: string) {
+  //   this.element.nativeElement.style.backgroundColor = color;
+  // }
 }

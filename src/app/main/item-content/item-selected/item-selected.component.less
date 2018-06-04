@@ -91,8 +91,12 @@
 			font-size: 22px;
 			font-weight: 600;
 		}//	title
-		.location-size {
-			padding: 10px;
+		.location,
+		.size,
+		.colors {
+			display: flex;
+			display: -webkit-flex;
+    	align-items: center;
 			margin: 10px 0 10px;
 			ul {
 				display: inline-block;
@@ -107,7 +111,6 @@
 			}//	ul
 			span {
 				font-weight: 700;
-				margin-top: 10px;
 				font-size: 17px;
 				mat-icon {
 					color: #b30000;
@@ -115,17 +118,13 @@
     			top: 5px;
 				}//	mat-icon
 			}//	span
-		}//	location-size
+		}//	location, size, colors
 		.colors {
-			.color {
-				width: 20px;
-				height: 20px;
-				margin: 0 5px 0;
-				div {
-					width: 20px;
-					height: 20px;
-				}
-			}//	color
+			ul {
+				li{
+					padding: 12px;
+				}//	li
+			}//	ul
 		}//	colors
 	}//	description
 }//	example-card
@@ -142,20 +141,19 @@
 	position: fixed;
 	z-index: 5;
 	left: 50%;
-	bottom: 60px; 
-	
-}
+	bottom: 60px; 	
+}//	#message
 .show-message-error {
 	visibility: visible!important; 
 	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
 	animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
+}//	.show-message-error
 .show-message-done {
 	visibility: visible!important;
 	background-color: #00b300!important; 
 	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
 	animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
+}//	.show-message-error
 
 
 @-webkit-keyframes fadein {

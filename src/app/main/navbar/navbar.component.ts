@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { NavbarService } from '../../Services/navbar.service';
 
 @Component({
@@ -8,16 +7,15 @@ import { NavbarService } from '../../Services/navbar.service';
   styleUrls: ['./navbar.component.less']
 })
 export class NavbarComponent implements OnInit {
-	
-	equipmentControl: FormControl = new FormControl();
-	equipmentGroups: NavbarService;
+
+	menuItems: NavbarService;
 
   constructor(private navbarService: NavbarService) { 
 
 	}
 
   ngOnInit() {
-		this.equipmentGroups = this.navbarService.getEquipmentGroups();
+		this.menuItems = this.navbarService.getMenuItems();
   }
 
 

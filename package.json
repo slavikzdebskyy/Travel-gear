@@ -26,7 +26,10 @@
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "ng2-accordion": "0.0.15",
+    "ng2-nouislider": "^1.7.11",
+    "ng2-slider-component": "^1.0.9",
     "node": "^10.1.0",
+    "nouislider": "^11.1.0",
     "require": "^2.4.20",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"

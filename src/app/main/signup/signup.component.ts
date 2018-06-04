@@ -15,7 +15,13 @@ export class SignupComponent implements OnInit {
 
 	constructor(private userService: UserService, private router: Router) { }
 
-	ngOnInit() {
+	ngOnInit() {		 
+		let modal = document.getElementById('modal');
+		window.onclick = (event) => {
+			if (event.target == modal) {
+				this.router.navigate(['']);
+			}
+		}	
   }
 
 	@ViewChild('signUpForm') 
