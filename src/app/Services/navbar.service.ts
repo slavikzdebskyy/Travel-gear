@@ -1,153 +1,190 @@
 import { Item } from "../models/item.model";
 import { Injectable } from "@angular/core";
-import { NavItemInterface } from "../main/interfaces/navbar.interface";
+import { NavItemInterface } from "../interfaces/navbar.interface";
 
 @Injectable()
 export class NavbarService {
 
 	private menuItems:NavItemInterface []  = [
-		{ value : 'equipments',
-			viewValue : 'Спорядження',
+		{
+			value : 'Спорядження',
 			children: [
-								{	value: 'backpacks',
-									viewValue: 'Рюкзаки',
+								{
+									value: 'Рюкзаки',
 									children: [
-															{ value: 'backpacks<40',
-																viewValue: 'Рюкзаки для міста'
+															{
+																value: 'Рюкзаки для міста'
 															},
-															{ value: 'backpacks>40',
-																viewValue: 'Рюкзаки для тркінгу'
+															{
+																value: 'Рюкзаки для тркінгу'
 															},
-															{ value: 'backpacks-child',
-																viewValue: 'Велорюкзаки'
+															{
+																value: 'Велорюкзаки'
 															},
-															{ value: 'backpacks<40',
-																viewValue: 'Рюкзаки для ноутбука'
+															{
+																value: 'Рюкзаки для ноутбука'
 															},
-															{ value: 'backpacks>40',
-																viewValue: 'Рюкзаки дитячі'
+															{
+																value: 'Рюкзаки дитячі'
 															}
 														]
 									},   
-									{	value: 'tents',
-										viewValue: 'Намети',
+									{
+										value: 'Намети',
 										children: [
-																{ value: 'tents-1',
-																	viewValue: 'Намети одномісні'
+																{
+																	value: 'Намети одномісні'
 																},
-																{ value: 'tents-2',
-																	viewValue: 'Намети двомісні'
+																{
+																	value: 'Намети двомісні'
 																},
-																{ value: 'tents-3',
-																	viewValue: 'Намети тримісні'
+																{
+																	value: 'Намети тримісні'
 																},
-																{ value: 'tents-4',
-																	viewValue: 'Намети чотиримісні'
+																{
+																	value: 'Намети чотиримісні'
 																}
 															]
 									},
-									{	value: 'sleepingbag',
-										viewValue: 'Спальники',
+									{
+										value: 'Спальники',
 										children: [
-																{ value: 'sleeping-bag-1',
-																	viewValue: 'Спальники одномісні'
+																{
+																	value: 'Спальники одномісні'
 																},
-																{ value: 'sleeping-bag-2',
-																	viewValue: 'Спальники двомісні'
+																{
+																	value: 'Спальники двомісні'
 																},
 															]
 									},
-									{	value: 'touristmat',
-										viewValue: 'Каремати',
+									{
+										value: 'Каремати',
 										children: [
-																{ value: 'tourist-mat-foam',
-																	viewValue: 'Пінні'
+																{
+																	value: 'Пінні'
 																},
-																{ value: 'tourist-mat-inflatable',
-																	viewValue: 'Надувні'
+																{
+																	value: 'Надувні'
 																},
-																{ value: 'tourist-mat-selfinflatable',
-																	viewValue: 'Самонадувні'
+																{
+																	value: 'Самонадувні'
 																},
 															]
 									},
-									{	value: 'burner',
-										viewValue: 'Пальники',
+									{
+										value: 'Пальники',
 										children: [
-																	{ value: 'burner-spirit',
-																		viewValue: 'Пальники спиртові'
+																	{
+																		value: 'Пальники спиртові'
 																	},
-																	{ value: 'burner-gas',
-																		viewValue: 'Пальники газові'
+																	{
+																		value: 'Пальники газові'
 																	},
-																	{ value: 'burner-multi',
-																		viewValue: 'Пальники мультипаливні'
+																	{
+																		value: 'Пальники мультипаливні'
 																	},
-																	{ value: 'burner-integrater',
-																		viewValue: 'Інтегровані системи'
+																	{
+																		value: 'Інтегровані системи'
 																	},
 																]
 									},
-									{	value: 'accessories',
-										viewValue: 'Аксесуари',
+									{
+										value: 'Аксесуари',
 										children: [
-																{ value: 'dishes',
-																	viewValue: 'Посуд'
+																{
+																	value: 'Посуд'
 																},
-																{ value: 'tools',
-																	viewValue: 'Ножі, інструменти'
+																{
+																	value: 'Ножі, інструменти'
 																},
-																{ value: 'drincing-system',
-																	viewValue: 'Питні системи'
+																{
+																	value: 'Питні системи'
 																},
-																{ value: 'trekking-sticks',
-																	viewValue: 'Трекінгові палиці'
+																{
+																	value: 'Трекінгові палиці'
 																},
-																{ value: 'accessories-other',
-																	viewValue: 'Інше'
+																{
+																	value: 'Інше'
 																},
 															]
 									}
 							]
 			},
 			{
-				value: '',
-				viewValue: 'Гірські лижі',
+				value: 'Гірські лижі та сноубординг',
+				children: [
+										{
+											value: 'Лижі',
+											children: [
+																{
+																	value: 'Гірські лижі',
+																},
+																{
+																	value: 'Бігові лижі',
+																},
+																{
+																	value: 'Лижні кріплення',
+																},
+																{
+																	value: 'Лижні палиці',
+																},
+																{
+																	value: 'Лижні черевики',
+																},
+																]
+										},
+										{
+											value: 'Сноубординг',
+											children: [
+																	{
+																		value: 'Сноуборди',
+																	},
+																	{
+																		value: 'Кріплення для сноубордів',
+																	},
+																	{
+																		value: 'Боти для сноуборду',
+																	},
+																]
+										},
+										{
+											value: 'Аксесуари',
+											children: [
+																	{
+																		value: 'Шоломи',
+																	},
+																	{
+																		value: 'Маски',
+																	},
+																	{
+																		value: 'Захист',
+																	},
+																]
+										}
+									]
+			},			
+			{
+				value: 'Альпінізм, скелелазіння',
 				children: []
 			},
 			{
-				value: '',
-				viewValue: 'Сноубординг',
+				value: 'Велосипеди',
 				children: []
 			},
 			{
-				value: '',
-				viewValue: 'Альпінізм, скелелазіння',
+				value: 'Велозапчастини та аксесуари',
 				children: []
 			},
 			{
-				value: '',
-				viewValue: 'Велосипеди',
+				value: 'Одяг',
 				children: []
 			},
 			{
-				value: '',
-				viewValue: 'Велозапчастини та аксесуари',
+				value: 'Взуття',
 				children: []
 			},
 			{
-				value: '',
-				viewValue: 'Одяг',
-				children: []
-			},
-			{
-				value: '',
-				viewValue: 'Взуття',
-				children: []
-			},
-			{
-				value: '',
-				viewValue: 'Зимові аксесуари',
+				value: 'Зимові аксесуари',
 				children: []
 			}
 		]

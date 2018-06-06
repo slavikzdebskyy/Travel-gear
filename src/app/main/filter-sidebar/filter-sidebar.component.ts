@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemsService } from '../../Services/items.service';
+import { NavbarService } from '../../Services/navbar.service';
 
 @Component({
   selector: 'app-filter-sidebar',
@@ -8,21 +9,32 @@ import { ItemsService } from '../../Services/items.service';
 })
 export class FilterSidebarComponent implements OnInit {
 
-	rangeValue: number[] = [0, 100];
-	rangeMax: number = 1000;
-	label: any;
-	tooltip: any;
-	tooltipEnabled: any;
+	priceValue: number[] = [0, 100];
+	priceMax: number = 1000;
+	subCategoryIndex: number;
+	subCategory: any;
+	allColors: any;
+	allBrands: any[];
 	items: any[];
+	category: any[] = [];
+	menuItems: any[];
 
-  constructor(private itemService: ItemsService) {
+  constructor(private itemService: ItemsService, private navbarService: NavbarService) {
 		
 	 }
 
-  ngOnInit() {
+  ngOnInit() {	
+		this.menuItems = this.navbarService.getMenuItems();
 		this.items = this.itemService.getAllItems();
-		this.rangeMax = this.getMaxPrice();
-		this.rangeValue = [0,this.rangeMax];
+		this.priceMax = this.getMaxPrice();
+		this.priceValue = [0,this.priceMax];
+		this.allBrands = this.itemService.getAllProperty('brand');
+		this.allColors = this.itemService.getAllPropertyFromArray('colors');
+	}
+
+	test() {
+		// let col = this.itemService.getAllProperty('size');
+		console.log(this.allBrands);
 	}
 	
 	getMaxPrice (): number {

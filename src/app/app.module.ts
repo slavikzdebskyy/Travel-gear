@@ -9,6 +9,7 @@ import { MatButtonModule, MatCardModule, MatMenuModule, MatSelectModule, MatIcon
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatRadioModule } from '@angular/material/radio';
 import { ItemContentComponent } from './main/item-content/item-content.component';
 import { ItemComponent } from './main/item-content/item/item.component';
 import { HoverItemDirective } from './hover-item.directive';
@@ -65,6 +66,7 @@ import { NouisliderModule } from 'ng2-nouislider';
 		MatSelectModule,
 		MatTabsModule,
 		MatToolbarModule,
+		MatRadioModule,
 		MatCheckboxModule,
 		NoopAnimationsModule,
 		RouterModule.forRoot(Routers),

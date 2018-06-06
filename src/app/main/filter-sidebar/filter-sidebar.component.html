@@ -1,22 +1,38 @@
 <div class="filer-container">	
-	<div class="slider">
+	<div class="price-slider">
 		<h5>Ціна</h5>
 		<p> 
-			<span >від </span><span class="price"> {{rangeValue[0]}} </span> грн <span></span>  <span>до</span> <span class="price"> {{rangeValue[1]}} </span> грн
+			<span >від </span><span class="price"> {{priceValue[0]}} </span> грн <span></span>  <span>до</span> <span class="price"> {{priceValue[1]}} </span> грн
 		</p>
-		<nouislider [connect]="false" [min]="0" [max]="rangeMax" [step]="10" [(ngModel)]="rangeValue"></nouislider>
+		<nouislider [connect]="false" [min]="0" [max]="priceMax" [step]="10" [(ngModel)]="priceValue"></nouislider>
 	</div>
 			
 
 	
 
 
-	<section class="example-section">
-			<mat-checkbox class="example-margin" [(ngModel)]="checked">Checked</mat-checkbox>
-			<mat-checkbox class="example-margin" [(ngModel)]="indeterminate">Indeterminate</mat-checkbox>
+
+
+	<mat-radio-group  class="category" [(ngModel)]="subCategoryIndex">
+		<h5>Категорія</h5>
+		<mat-radio-button class="category-radio" color="primary" *ngFor="let item of menuItems; let i=index" [value]="i" [checked]="item.checked">{{item.value}}</mat-radio-button>
+	</mat-radio-group>
+	<section class="subcategory" *ngIf="subCategoryIndex!=undefind">	
+		<h5>Підкатегорія</h5>		
+		<mat-checkbox class="category-checkbox" color="primary" *ngFor="let item of menuItems[subCategoryIndex].children">{{item.value}}</mat-checkbox><br>
+	</section>
+	<section class="brands" *ngIf="allBrands.length>0">	
+		<h5>Виробники</h5>		
+		<mat-checkbox class="category-checkbox" color="primary" *ngFor="let brand of allBrands">{{brand}}</mat-checkbox><br>
+	</section>
+	<section class="colors" *ngIf="allColors.length>0">	
+			<h5>Кольори</h5>		
+			<mat-checkbox class="category-colors" color="primary" *ngFor="let color of allColors"><div [ngStyle]="{background:color}"></div></mat-checkbox><br>
 		</section>
-			
+
+
+
 
 			
-
-		</div>
+<button (click)="test()">TEST</button>
+	</div>

@@ -1,6 +1,7 @@
 export class Item {
 	id: string;
 	category: string;
+	subCategory: string;
 	title: string;
 	brandLogoUrl: string;
 	brand: string;
@@ -10,13 +11,14 @@ export class Item {
 	colors: string[];
 	locations: string[];
 	imageUrl: string;
-	size: string;
+	size: string[];
 	promo: boolean;
 	promoTitle: string;
 
-	constructor (id, category, title, brandLogoUrl, brand, description, oldPrice, newPrice, colors, locations, imageUrl, size, promo, promoTitle) {
+	constructor (id, category, subCategory, title, brandLogoUrl, brand, description, oldPrice, newPrice, colors, locations, imageUrl, size, promo, promoTitle) {
 		this.id = id;
 		this.category = category;
+		this.subCategory = subCategory;
 		this.title = title;
 		this.brandLogoUrl = brandLogoUrl;
 		this.brand = brand;
