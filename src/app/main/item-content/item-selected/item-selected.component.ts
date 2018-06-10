@@ -5,6 +5,9 @@ import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BagService } from '../../../Services/bag.service';
 import { AuthLoginService } from '../../../Services/auth.service';
+import { Item } from '../../../models/item.model';
+import { UserService } from '../../../Services/user.service';
+import { User } from '../../../models/user.model';
 
 @Component({
   selector: 'app-item-selected',
@@ -12,34 +15,41 @@ import { AuthLoginService } from '../../../Services/auth.service';
   styleUrls: ['./item-selected.component.less']
 })
 export class ItemSelectedComponent implements OnInit {
-
-	item:any;
+	
+	items: Item[] = [];
+	item: Item;
+	user: User;
 	doubleItemMessageClass: string = '';
 	message :string = '';
-	// currentColor:string = '#888';
-
 
 	constructor(private itemService: ItemsService, private route: ActivatedRoute,
 							private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer,
-							private bagService: BagService,  private auth: AuthLoginService) { 
+							private bagService: BagService,  private auth: AuthLoginService, 
+							private userService: UserService) { 
 		iconRegistry.addSvgIcon(
 			'stars',
 			sanitizer.bypassSecurityTrustResourceUrl('./assets/images/baseline-favorite_border-24px.svg'));
-			iconRegistry.addSvgIcon(
-				'location',
-				sanitizer.bypassSecurityTrustResourceUrl('./assets/images/baseline-room-24px.svg'));
+		iconRegistry.addSvgIcon(
+			'location',
+			sanitizer.bypassSecurityTrustResourceUrl('./assets/images/baseline-room-24px.svg'));
 	}
 
-  ngOnInit() {
+  ngOnInit() {	
 		let id = this.route.snapshot.params['id'];
-		this.item = this.itemService.getItemById(id);
-  }
+		this.itemService.getItemById(id).subscribe(res => {
+			this.item = res;
+		});	
+		
+	}
+
+	
+	
 
 	addToBag() {
 		let isThisItemInBag = true;
 		let bagItems = this.bagService.getAllItemsFromBag();
 			for(let i = 0; i < bagItems.length; i++){
-				if(bagItems[i].id === this.item.id){
+				if(bagItems[i]._id === this.item._id){
 					this.message = 'Цей товар вже є у кошику !';
 					this.doubleItemMessageClass = 'show-message-error';					
 					setTimeout(() => {
@@ -61,24 +71,30 @@ export class ItemSelectedComponent implements OnInit {
 	addToFavorite () {
 		if(this.auth.isLogin()){
 			let isThisItemInFavorites = true;
-			let user = JSON.parse(localStorage.getItem('user'));
-			if(user.favorite.length > 0){	
-				for(let i = 0; i < user.favorite.length; i++) {
-					if(user.favorite[i].id === this.item.id) {					
-						isThisItemInFavorites = false;
-					} else {
-						isThisItemInFavorites = true;
+			let email = localStorage.getItem('userEmail');
+			this.userService.getUserByEmail(email).subscribe(res => {
+				this.user = res;
+				if(this.user.favorite.length > 0){	
+					for(let i = 0; i < this.user.favorite.length; i++) {
+						if(this.user.favorite[i]._id === this.item._id) {					
+							isThisItemInFavorites = false;
+						} else {
+							isThisItemInFavorites = true;
+						}						
 					}
-				}
-			}
+				}					
+			});		
 			if(isThisItemInFavorites){
-				user.favorite.push(this.item);
-				localStorage.setItem('user', JSON.stringify(user));
-				this.message = this.item.title + ' успішно додано до списку бажань.';
-				this.doubleItemMessageClass = 'show-message-done';					
-					setTimeout(() => {
-						this.doubleItemMessageClass = '';
-					}, 4000);
+				this.user.favorite.push(this.item);
+				this.userService.updateUser(this.user).subscribe(result => {
+					if(result){
+						this.message = this.item.title + ' успішно додано до списку бажань.';
+						this.doubleItemMessageClass = 'show-message-done';					
+							setTimeout(() => {
+								this.doubleItemMessageClass = '';
+							}, 4000);
+					}
+				});				
 			} else {
 				this.message = 'Цей товар вже є у списку бажань !';
 				this.doubleItemMessageClass = 'show-message-error';					

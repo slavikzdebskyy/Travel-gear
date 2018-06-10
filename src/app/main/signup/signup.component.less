@@ -105,7 +105,52 @@
 	}//	form.Sign-up-form
 }//	.modal
 
+#message {
+	visibility: hidden;
+	min-width: 250px;
+	margin-left: -125px;
+	background-color: #b30000;
+	color: #fff;
+	text-align: center;
+	border-radius: 2px;
+	padding: 16px;
+	position: fixed;
+	z-index: 20;
+	left: 50%;
+	bottom: 60px; 	
+}//	#message
+.show-message-error {
+	visibility: visible!important; 
+	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+	animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}//	.show-message-error
+.show-message-done {
+	visibility: visible!important;
+	background-color: #00b300!important; 
+	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+	animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}//	.show-message-error
 
+
+@-webkit-keyframes fadein {
+	from {bottom: 0; opacity: 0;} 
+	to {bottom: 60px; opacity: 1;}
+}
+
+@keyframes fadein {
+	from {bottom: 0; opacity: 0;}
+	to {bottom: 60px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+	from {bottom: 60px; opacity: 1;} 
+	to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+	from {bottom: 60px; opacity: 1;}
+	to {bottom: 0; opacity: 0;}
+}
 @media screen and (max-width: 300px) {
 	.cancelbtn, .signupbtn {
 		 width: 100%;

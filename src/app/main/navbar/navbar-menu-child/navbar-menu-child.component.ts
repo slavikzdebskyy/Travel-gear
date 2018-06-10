@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { NavbarService } from '../../../Services/navbar.service';
-import { NavItemInterface } from '../../interfaces/navbar.interface';
+import { NavItemInterface } from '../../../interfaces/navbar.interface';
 
 @Component({
   selector: 'app-navbar-menu-child',

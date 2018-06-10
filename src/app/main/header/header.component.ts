@@ -42,25 +42,30 @@ export class HeaderComponent implements OnInit, DoCheck {
 					sanitizer.bypassSecurityTrustResourceUrl('./assets/images/baseline-home-24px.svg'));
   }
 	
-	ngOnInit() {
-		this.user = JSON.parse(localStorage.getItem('user'));
+	ngOnInit() {		
+		if(this.auth.isLogin()){
+			let email = localStorage.getItem('userEmail');
+			this.userService.getUserByEmail(email).subscribe(res => {
+				this.user = res;				
+			})		
+		} 
 	 }
 	
 	ngDoCheck(): void {
 		this.myPurchasesCount = this.bagService.getAllItemsFromBag().length;
-		if(this.auth.isLogin()){
-			this.user = JSON.parse(localStorage.getItem('user'));
+		if(this.auth.isLogin()){			
+			this.myFavoriteCount = this.user.favorite.length;
 			this.account = this.user.name;
 			this.logoutVisible = true;
-			this.myFavoriteCount = this.user.favorite.length;
 		} else {
-			this.myFavoriteCount = 0;
+				this.myFavoriteCount = 0;
+				this.account = 'Особистий кабінет';
 		}
 	}	
 	
 	myAccount () {
 		if(this.auth.isLogin()){
-			this.account = this.user.name;
+			// this.account = this.user.name;
 			this.logoutVisible = true;
 			this.router.navigate(['user_acount/', this.user.email]);
 		} else {

@@ -30,11 +30,11 @@ export class ItemComponent implements OnInit {
   ngOnInit() {
 	}
 
-	some() {
-		console.log('container')
-	}
+	// some() {
+	// 	console.log('container')
+	// }
 	some2() {
-		console.log('favorite')
+		console.log(this.item.colors)
 	}
 
 	addToFavorite () {
@@ -43,7 +43,7 @@ export class ItemComponent implements OnInit {
 			let user = JSON.parse(localStorage.getItem('user'));
 			if(user.favorite.length > 0){	
 				for(let i = 0; i < user.favorite.length; i++) {
-					if(user.favorite[i].id === this.item.id) {					
+					if(user.favorite[i].id === this.item._id) {					
 						isThisItemInFavorites = false;
 					} else {
 						isThisItemInFavorites = true;

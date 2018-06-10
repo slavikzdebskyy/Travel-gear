@@ -1,12 +1,12 @@
 
-<div class="container" (click)="some()">
+<div class="container">
 	
 	<mat-card class="example-card"  appHoverItem>
 		<div class="promo-container">
 				<div class="promo" *ngIf="item.promo">
 					{{item.promoTitle}}
 				</div>
-				<div id="favorite" (click)="some2()">
+				<div id="favorite">
 					<mat-icon svgIcon="stars"></mat-icon>
 				</div>
 		</div>
@@ -18,6 +18,7 @@
 		<div class="colors">
 			<div class="color" *ngFor="let el of item.colors">
 				<div [ngStyle] = "{background:el}"></div>
+			
 			</div>
 		</div>
 		<p>

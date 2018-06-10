@@ -15,7 +15,11 @@ export class ItemContentComponent implements OnInit {
   constructor(private itemService:ItemsService) { }
 
   ngOnInit() {
-		this.items = this.itemService.getAllItems();
+		// this.items = this.itemService.getAllItems();
+		this.itemService.getAllItems().subscribe(
+			res => {
+				this.items = res;
+			});
   }
 
 }

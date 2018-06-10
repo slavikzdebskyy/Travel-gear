@@ -1,0 +1,53 @@
+<div class="form-container">
+	<form #adminAddItemForm="ngForm" (ngSubmit)="addNewItem()">
+		<h1>Додаємо новий товар</h1>
+		<hr>	
+		<div class="group">
+			<mat-select class="category-select" placeholder="Відділ" ngModel  name="section" #section="ngModel">
+				<mat-option *ngFor="let element of menuCategory; let i=index" [value]="i" (onSelectionChange)="categoryVisible($event)">
+					{{element.value}}
+				</mat-option>
+			</mat-select>
+			<mat-select class="category-select" placeholder="Категорія"  ngModel  name="category" #category="ngModel" *ngIf="categorySelectVisible">
+				<mat-option *ngFor="let cat of menuCategory[section.value].children; let j=index" [value]="cat.value" (onSelectionChange)="categoryVisible($event, section.value, j)">
+					{{cat.value}}
+				</mat-option>
+			</mat-select>
+			<mat-select class="category-select" placeholder="Підкатегорія"  ngModel  name="subCategory" #subCategory="ngModel" *ngIf="subCategorySelectVisible">
+				<mat-option *ngFor="let subCat of subMenuCategory" [value]="subCat.value" >
+					{{subCat.value}}
+				</mat-option>
+			</mat-select>
+			<mat-select class="category-select" ngModel placeholder="Виберіть розміри" name="size"  #size="ngModel" multiple>
+				<mat-option *ngFor="let sizeVal of sizeArr" [value]="sizeVal">{{sizeVal}}</mat-option>
+			</mat-select>
+			<mat-select class="category-select" ngModel placeholder="Виберіть локації" name="locations"  #locations="ngModel" multiple>
+				<mat-option *ngFor="let local of locationsArr" [value]="local">{{local}}</mat-option>
+			</mat-select>
+			<mat-select class="category-select" ngModel placeholder="Виберіть кольори" name="colors"  #colors="ngModel" multiple>
+				<mat-option *ngFor="let col of colorsArr" [value]="col" color="primary"><span class="color-select" [ngStyle]="{background:col}">{{col}}</span></mat-option>
+			</mat-select>		
+			<mat-select class="category-select" placeholder="Промо"  ngModel  name="promo" #promo="ngModel">
+				<mat-option *ngFor="let prom of promoArr" [value]="prom">{{prom}}</mat-option>
+			</mat-select>
+		</div>
+		<div class="group">
+			<input type="text" ngModel placeholder="Введіть назву товару" name="title" required   #title="ngModel">
+			<input type="text" ngModel placeholder="Введіть url бренду" name="brandLogoUrl"  required #brandLogoUrl="ngModel">	
+			<input type="text" ngModel placeholder="Введіть назву бренду" name="brand"  required #brand="ngModel">
+			<input type="text" ngModel placeholder="Введіть опис товару" name="description" required #description="ngModel"><br>
+			<input type="number" ngModel placeholder="Введіть стару ціну" name="oldPrice" #oldPrice="ngModel"><br>
+			<input type="number" ngModel placeholder="Введіть нову ціну" name="newPrice"  required  #newPrice="ngModel"><br>
+			<input type="text" ngModel placeholder="Введіть url картинки" name="imageUrl" required #imageUrl="ngModel"><br>
+			<input type="text" ngModel placeholder="Введіть промо" name="promoTitle" #promoTitle="ngModel"  *ngIf="promo.value"><br>
+		</div>	
+
+
+		
+		
+		<div class="buttons-container">
+			<button type="submit">Ввести новий товар</button>
+			<button type="button" (click)="close()">Відміна</button>	
+		</div>
+	</form>
+</div>

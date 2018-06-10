@@ -34,6 +34,9 @@ import { UserAcountComponent } from './main/user-acount/user-acount.component';
 import { NavbarMenuChildComponent } from './main/navbar/navbar-menu-child/navbar-menu-child.component';
 import { FilterSidebarComponent } from './main/filter-sidebar/filter-sidebar.component';
 import { NouisliderModule } from 'ng2-nouislider';
+import { AdministratorComponent } from './administrator/administrator.component';
+import { ItemDetailsService } from './Services/item.details.service';
+import { FooterComponent } from './main/footer/footer.component';
 
 
 
@@ -54,7 +57,9 @@ import { NouisliderModule } from 'ng2-nouislider';
     LoginComponent,
     UserAcountComponent,
     NavbarMenuChildComponent,
-		FilterSidebarComponent
+		FilterSidebarComponent,
+		AdministratorComponent,
+		FooterComponent
   ],
   imports: [
 		BrowserModule,
@@ -79,7 +84,7 @@ import { NouisliderModule } from 'ng2-nouislider';
 		
 	],
 
-	providers: [ItemsService,	NavbarService,
+	providers: [ItemsService,	NavbarService, ItemDetailsService,
 							BagService,	UserService, AuthLoginService],
 							
   bootstrap: [AppComponent]

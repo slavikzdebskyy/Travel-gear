@@ -21,14 +21,14 @@
 		<h5>Підкатегорія</h5>		
 		<mat-checkbox class="category-checkbox" color="primary" *ngFor="let item of menuItems[subCategoryIndex].children">{{item.value}}</mat-checkbox><br>
 	</section>
-	<section class="brands" *ngIf="allBrands.length>0">	
+	<section class="brands">	
 		<h5>Виробники</h5>		
 		<mat-checkbox class="category-checkbox" color="primary" *ngFor="let brand of allBrands">{{brand}}</mat-checkbox><br>
 	</section>
-	<section class="colors" *ngIf="allColors.length>0">	
-			<h5>Кольори</h5>		
-			<mat-checkbox class="category-colors" color="primary" *ngFor="let color of allColors"><div [ngStyle]="{background:color}"></div></mat-checkbox><br>
-		</section>
+	<section class="colors">	
+		<h5>Кольори</h5>		
+		<mat-checkbox class="category-colors" color="primary" *ngFor="let color of allColors"><div [ngStyle]="{background:color}"></div></mat-checkbox><br>
+	</section>
 
 
 

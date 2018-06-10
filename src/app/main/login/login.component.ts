@@ -29,13 +29,22 @@ export class LoginComponent implements OnInit {
 		}	
 	}
 	
-	loginUp () {
-		let isLogin = this.userService.login(this.loginForm.value.email, this.loginForm.value.password);
-		if(isLogin){
-		this.router.navigate(['user_acount/', this.loginForm.value.email]);
-		} else {
-			this.router.navigate(['']);
-		}
+	loginUp () {		 
+		this.userService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(res => {
+			if(res){
+				localStorage.setItem('isLog', 'true');
+				localStorage.setItem('userEmail', this.loginForm.value.email);
+			} else {
+				localStorage.setItem('isLog', 'false');
+				localStorage.setItem('userEmail', '');
+			}
+			let isLogin = localStorage.getItem('isLog');
+			if(isLogin){
+				this.router.navigate(['user_acount/', this.loginForm.value.email]);
+				} else {
+					this.router.navigate(['']);
+				}
+		});		
 	}
 
 	close () {
@@ -44,8 +53,7 @@ export class LoginComponent implements OnInit {
 	goToSignUp () {
 		this.router.navigate(['signup']);
 	}
-	closeAll () {
-		
-	}
+
+	
 
 }

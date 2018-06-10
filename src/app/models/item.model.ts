@@ -1,5 +1,5 @@
 export class Item {
-	id: string;
+	_id: string;
 	category: string;
 	subCategory: string;
 	title: string;
@@ -15,8 +15,7 @@ export class Item {
 	promo: boolean;
 	promoTitle: string;
 
-	constructor (id, category, subCategory, title, brandLogoUrl, brand, description, oldPrice, newPrice, colors, locations, imageUrl, size, promo, promoTitle) {
-		this.id = id;
+	constructor (category, subCategory, title, brandLogoUrl, brand, description, oldPrice, newPrice, colors, locations, imageUrl, size, promo, promoTitle) {
 		this.category = category;
 		this.subCategory = subCategory;
 		this.title = title;

@@ -23,9 +23,10 @@
 			<input type="checkbox" ngModel checked="checked" name="remember" #remember="ngModel">Запам'ятати мене
 		</label>
 		<div class="buttons-container">
-			<button type="submit" [disabled]="!isValidForm()">Реєстрація</button>
+			<button type="submit">Реєстрація</button>
 			<!-- <button type="button" (click)="close()">Відміна</button>	 -->
 			<button mat-button color="warn" (click)="goToLogin()">Авторизуватися</button>					
 		</div>
 	</form>
+	<div id="message" [class]="doubleItemMessageClass">{{message}}</div>
 </div>

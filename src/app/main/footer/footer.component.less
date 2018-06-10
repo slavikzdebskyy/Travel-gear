@@ -1,0 +1,56 @@
+.container-footer {
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-around;
+	align-items: flex-start;
+	padding-top: 20px;
+	width: 100%;
+	min-height: 200px;
+	background: #669999;
+	color:#e6e6e6;	
+	.footer-info,
+	.footer-about-us,
+	.footer-stores {
+		font-size: 18px;
+		font-family: sans-serif;
+		h4 {
+			font-size: 20px;
+			font-family: sans-serif;
+			width: 100%;
+			margin: 10px 0 10px;
+		}//	h4
+		ul {
+			line-height: 2;
+			li {
+				transition: all .5s;
+				-webkit-transition: all .5s;
+				cursor: pointer;
+				&:hover {
+					color: #992600;
+				}//	li&:hover
+			}//	li
+		}//	ul
+	}//	footer-info, -about-us, -stores
+	.footer-social {
+		display: flex;
+		display: -webkit-flex;
+		justify-content: space-around;
+		align-items: center;
+		flex-wrap: wrap;
+		width: 200px;
+		.fa {
+			padding: 10px;
+			font-size: 30px;
+			width: 50px;
+			text-align: center;
+			text-decoration: none;
+			margin: 5px 2px;
+			color: #fff;
+			transition: all .5s;
+			-webkit-transition: all .5s;
+			&:hover {
+				color: #992600;
+			}//	fa:hover			
+		}//	fa
+	}//	footer-social
+}//	container-footer

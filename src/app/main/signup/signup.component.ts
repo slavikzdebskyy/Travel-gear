@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
+	doubleItemMessageClass: string = '';
+	message :string = '';
 
 	constructor(private userService: UserService, private router: Router) { }
 
@@ -21,15 +23,43 @@ export class SignupComponent implements OnInit {
 			if (event.target == modal) {
 				this.router.navigate(['']);
 			}
-		}	
+		}	 
   }
 
 	@ViewChild('signUpForm') 
 	signUpForm: NgForm;
 	registerNewUser () {
-		let user: User = new User(this.signUpForm.value.name, this.signUpForm.value.lastname, this.signUpForm.value.email, this.signUpForm.value.phone, this.signUpForm.value.password, this.signUpForm.value.city, this.signUpForm.value.remember, []);
-		this.userService.addNewUser(user);
-		this.goToLogin();
+		let validForm = this.isValidForm();
+		if(validForm) {
+			if(this.signUpForm.value.remember === ''){
+				this.signUpForm.value.remember = false;
+			}
+			let user: User = new User(this.signUpForm.value.name, this.signUpForm.value.lastname, this.signUpForm.value.email, this.signUpForm.value.phone, this.signUpForm.value.password, this.signUpForm.value.city, this.signUpForm.value.remember, []);
+			this.userService.addNewUser(user).subscribe( res => {
+				if(res){
+					this.message = 'Реєстрація пройшла успішно !';
+					this.doubleItemMessageClass = 'show-message-done';					
+						setTimeout(() => {
+							this.doubleItemMessageClass = '';
+							this.goToLogin();
+						}, 4000);
+				} else {
+					this.message = 'Користувач з такою електроною адресою вже зареєстрований !';
+					this.doubleItemMessageClass = 'show-message-error';					
+					setTimeout(() => {
+						this.doubleItemMessageClass = '';
+					}, 3000);
+				}
+			});
+			
+		} else {
+			this.message = 'Дані заповнені некоректно, або заповнені не всі !';
+			this.doubleItemMessageClass = 'show-message-error';					
+			setTimeout(() => {
+				this.doubleItemMessageClass = '';
+			}, 3000);
+		}
+		// this.goToLogin();
 	}
 
 	isValidForm() {
