@@ -17,7 +17,7 @@ import { User } from '../../../models/user.model';
 export class ItemSelectedComponent implements OnInit {
 	
 	items: Item[] = [];
-	item: Item;
+	item: Item = new Item('','','','','','','','','','','','','','');
 	user: User;
 	doubleItemMessageClass: string = '';
 	message :string = '';
@@ -69,10 +69,10 @@ export class ItemSelectedComponent implements OnInit {
 	}
 
 	addToFavorite () {
-		if(this.auth.isLogin()){
+		if(this.auth.canActivate){
 			let isThisItemInFavorites = true;
-			let email = localStorage.getItem('userEmail');
-			this.userService.getUserByEmail(email).subscribe(res => {
+			// let email = localStorage.getItem('userEmail');
+			this.userService.getUserByToken().subscribe(res => {
 				this.user = res;
 				if(this.user.favorite.length > 0){	
 					for(let i = 0; i < this.user.favorite.length; i++) {

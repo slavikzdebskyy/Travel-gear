@@ -16,6 +16,6 @@ export const Routers = [
 	{path: 'mybag', component: BagComponent},
 	{path: 'signup', component: SignupComponent},
 	{path: 'login', component: LoginComponent},
-	{path: 'user_acount/:email', component: UserAcountComponent, canActivate: [AuthLoginService]},
+	{path: 'user_acount', component: UserAcountComponent, canActivate: [AuthLoginService]},
 	{path: 'administrator', component: AdministratorComponent}
 ]

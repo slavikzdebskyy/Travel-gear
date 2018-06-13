@@ -6,7 +6,8 @@ export class User {
 	password: string;
 	city: string;
 	rememberMe: boolean;
-	favorite: any;
+	favorite: any[];
+	token: any[];
 
 	constructor (name, lastName, email, phone, password, city, rememberMe, favorite) {
 		this.name = name;

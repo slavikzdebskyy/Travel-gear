@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, DoCheck } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Item } from '../../models/item.model';
 import { BagService } from '../../Services/bag.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,16 +14,16 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './user-acount.component.html',
   styleUrls: ['./user-acount.component.less']
 })
-export class UserAcountComponent implements OnInit, DoCheck {
+export class UserAcountComponent implements OnInit {
 
 	
 	requaredFeld: any;
 	doubleItemMessageClass: string;
 	message: string;
 	itemsInBag: Item[] = [];
-	isBagEmpty: boolean;
-	isFavoriteEmpty: boolean;
-	user: User;
+	isBagEmpty: boolean = false;
+	isFavoriteEmpty: boolean = false;
+	user: User = new User('','','','','','','',[]);
 
 	@ViewChild('UserDataForm') 
 	UserDataForm: NgForm;
@@ -35,25 +35,14 @@ export class UserAcountComponent implements OnInit, DoCheck {
 			sanitizer.bypassSecurityTrustResourceUrl('./assets/images/baseline-stars-24px.svg'));
 	 }
 
-
-	
-	
-	
-
   ngOnInit() {
-		let email = this.route.snapshot.params['email'];
-		this.userService.getUserByEmail(email).subscribe(res => {
-			this.user = res;		
-			this.isFavoriteEmpty = Boolean(this.user.favorite.length);	
-		});		
-		
-				
+		this.userService.getUserByToken().subscribe(res => {
+		this.user = res;		
+		this.isFavoriteEmpty = Boolean(this.user.favorite.length);				
+		});	
+		this.itemsInBag = this.bagService.getAllItemsFromBag();						
 	}
-	ngDoCheck(): void {
-		this.itemsInBag = this.bagService.getAllItemsFromBag();
-		this.isBagEmpty = Boolean(this.itemsInBag.length);
-		this.isFavoriteEmpty = Boolean(this.user.favorite.length);
-	}
+
 	
 	updateUser () {
 		if(this.UserDataForm.valid){
@@ -126,14 +115,6 @@ export class UserAcountComponent implements OnInit, DoCheck {
 		localStorage.setItem('user', JSON.stringify(this.user));
 		if(this.user.favorite.length === 0) {
 			this.isFavoriteEmpty = false;
-		}
-	}
-
-	isValidForm() {
-		if(this.UserDataForm.value.password === this.UserDataForm.value.passwordconfirm && this.UserDataForm.valid){
-			return true;		
-		} else {
-			return false;			
 		}
 	}
 

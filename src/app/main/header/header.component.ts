@@ -1,10 +1,11 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, Input } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BagService } from '../../Services/bag.service';
 import { Router } from '@angular/router';
 import { AuthLoginService } from '../../Services/auth.service';
 import { UserService } from '../../Services/user.service';
+import { User } from '../../models/user.model';
 
 
 
@@ -18,10 +19,15 @@ export class HeaderComponent implements OnInit, DoCheck {
 	doubleItemMessage: string = '';
 	logoImage: string = './assets/images/logo-highlander.png';
 	myPurchasesCount: number = 0;
-	myFavoriteCount: number = 0;
+	@Input()
+	myFavoriteCount: number = 0;	
 	account: string = 'Особистий кабінет';
-	logoutVisible: boolean = false;
-	user:any;
+	logoutVisible: boolean = true;
+	user:User = new User('','','','','','','',[]);
+
+	// @Input()
+	// headerInfo: any = {'account': 'Особистий кабінет', 'myFavoriteCount': 0, 'logoutVisible': false};
+
 	
 	constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private userService: UserService,
 							private bagService: BagService, private router: Router, private auth: AuthLoginService) {
@@ -42,41 +48,50 @@ export class HeaderComponent implements OnInit, DoCheck {
 					sanitizer.bypassSecurityTrustResourceUrl('./assets/images/baseline-home-24px.svg'));
   }
 	
-	ngOnInit() {		
-		if(this.auth.isLogin()){
-			let email = localStorage.getItem('userEmail');
-			this.userService.getUserByEmail(email).subscribe(res => {
-				this.user = res;				
-			})		
-		} 
+	ngOnInit() {	
+				this.myPurchasesCount = this.bagService.getAllItemsFromBag().length;	
+				// this.account = this.headerInfo.account;
+				// this.logoutVisible = this.headerInfo.logoutVisible;
+				// this.myFavoriteCount = this.myFavoriteCount;
+	// 	if(this.auth.isLogin()){
+	// 		let email = localStorage.getItem('userEmail');
+	// 		this.userService.getUserByEmail(email).subscribe(res => {
+	// 			this.user = res;				
+	// 		})		
+	// 	} 
 	 }
 	
 	ngDoCheck(): void {
-		this.myPurchasesCount = this.bagService.getAllItemsFromBag().length;
-		if(this.auth.isLogin()){			
-			this.myFavoriteCount = this.user.favorite.length;
-			this.account = this.user.name;
-			this.logoutVisible = true;
-		} else {
-				this.myFavoriteCount = 0;
-				this.account = 'Особистий кабінет';
-		}
+		// this.myFavoriteCount = 0;
+
+		// if(this.auth.isLogin()){			
+		// 	this.myFavoriteCount = this.user.favorite.length;
+		// 	this.account = this.user.name;
+		// 	this.logoutVisible = true;
+		// } else {
+		// 		this.myFavoriteCount = 0;
+		// 		this.account = 'Особистий кабінет';
+		// }
 	}	
-	
-	myAccount () {
-		if(this.auth.isLogin()){
-			// this.account = this.user.name;
-			this.logoutVisible = true;
-			this.router.navigate(['user_acount/', this.user.email]);
+	getHeaderinfo(value){
+		this.account = value.account;
+		this.logoutVisible = value.logoutVisible;
+		this.myFavoriteCount = value.myFavoriteCount;
+	}
+	goToMyAccount () {	
+		this.userService.getUserByToken().subscribe(res => {
+		if(res){
+			this.router.navigate(['user_acount/']);
 		} else {
 			this.router.navigate(['login']);
 		}
+		});			
 	}
 
 	logOut () {
-		this.userService.logout();
+		this.userService.logout(); // subscribe in UserService
 		this.account = 'Особистий кабінет';
-		this.logoutVisible = false;
+		// this.logoutVisible = false;
 		this.router.navigate(['']);
 	}
 

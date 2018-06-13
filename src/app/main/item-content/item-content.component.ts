@@ -16,8 +16,7 @@ export class ItemContentComponent implements OnInit {
 
   ngOnInit() {
 		// this.items = this.itemService.getAllItems();
-		this.itemService.getAllItems().subscribe(
-			res => {
+		this.itemService.getAllItems().subscribe(res => {
 				this.items = res;
 			});
   }

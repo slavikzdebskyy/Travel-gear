@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ItemsService } from '../../Services/items.service';
 import { NavbarService } from '../../Services/navbar.service';
 import { ItemDetailsService } from '../../Services/item.details.service';
@@ -9,7 +9,7 @@ import { Item } from '../../models/item.model';
   templateUrl: './filter-sidebar.component.html',
   styleUrls: ['./filter-sidebar.component.less']
 })
-export class FilterSidebarComponent implements OnInit, DoCheck {
+export class FilterSidebarComponent implements OnInit {
 
 	priceMax: number = 1000;
 	priceValue: number[] = [0, 1000];	
@@ -29,7 +29,6 @@ export class FilterSidebarComponent implements OnInit, DoCheck {
   ngOnInit() {	
 
 		this.menuItems = this.navbarService.getMenuItems();
-		// this.items = this.itemService.getAllItems();
 		this.itemService.getAllItems().subscribe(
 			res => {
 				this.items = res;
@@ -39,14 +38,6 @@ export class FilterSidebarComponent implements OnInit, DoCheck {
 
 		this.allColors = this.itemDetailService.getAllColors();
 
-	}
-
-	ngDoCheck(): void {
-		// console.log(this.items);
-		// this.priceMax = this.getMaxPrice();
-		// 		this.priceValue = [0,this.priceMax];
-		// this.allBrands = this.getAllProperty('brand');
-	
 	}
 
 	test() {

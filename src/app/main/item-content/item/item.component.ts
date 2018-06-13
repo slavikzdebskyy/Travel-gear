@@ -38,7 +38,7 @@ export class ItemComponent implements OnInit {
 	}
 
 	addToFavorite () {
-		if(this.auth.isLogin()){
+		if(this.auth.canActivate){
 			let isThisItemInFavorites = true;
 			let user = JSON.parse(localStorage.getItem('user'));
 			if(user.favorite.length > 0){	

@@ -13,38 +13,46 @@ export class UserService {
 	private endpoints: any = environment.local;
 
 	addNewUser (user:User) {
-		return this.httpClient.post(this.endpoints.saveUser, user);
+		let headers = {headers : this.addHeaders()};
+		return this.httpClient.post(this.endpoints.saveUser, user, headers);
 	}
 
 	updateUser (user:User) {
-		return this.httpClient.post(this.endpoints.updateUser, user);
+		let headers = {headers : this.addHeaders()};
+		return this.httpClient.post(this.endpoints.updateUser, user, headers);
 	}
 	
 	login (email: string, password: string) {
-		// let headers = {headers : this.addHeaders()};
+		let headers = {headers : this.addHeaders()};
 		let data = {'email': email, 'password': password}
-		return this.httpClient.post(this.endpoints.loginUser, data);		
+		return this.httpClient.post(this.endpoints.loginUser, data, headers);		
 	}
 
-	getUserByEmail (email:string) {
-		// let headers = {headers : this.addHeaders()};		
-		let andpointsByEmail = this.endpoints.acountUser + email;
-		return this.httpClient.get<User>(andpointsByEmail);	
+	getUserByToken () {
+		let headers = {headers : this.addHeaders()};
+		return this.httpClient.get<User>(this.endpoints.acountUser, headers);
 	}
-
 	
-	// addHeaders () {
-	// 	return new HttpHeaders ({
-	// 		'Contetnt-Type' : 'application/json',
-	// 		'Authorization' : 'some token',
-	// 		'Access-Control-Allow-Origin' : '*',
-	// 	});
-	// }
+	
+	logout () {
+		let headers = {headers : this.addHeaders()};
+		let token = {'token': localStorage.getItem('token')};
+		localStorage.removeItem('token');
+		return this.httpClient.post(this.endpoints.logOutUser, token, headers).subscribe(res => {	});	
+	}
 
-logout () {
-	localStorage.setItem('isLog', 'false');
-	localStorage.setItem('userEmail', '');
-}
+	addHeaders () {
+		let token = localStorage.getItem('token');
+		if(!token){
+			token = 'some token';
+		}
+		return new HttpHeaders ({
+			'Contetnt-Type' : 'application/json',
+			'Authorization' : token,
+			'Access-Control-Allow-Origin' : '*',
+		});
+	}
+
 
 
 

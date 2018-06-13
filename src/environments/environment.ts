@@ -10,8 +10,9 @@ export const environment = {
 		saveItem: "http://localhost:3000/items/save",
 		saveUser: "http://localhost:3000/users/signup",
 		loginUser: "http://localhost:3000/users/login",
-		acountUser: "http://localhost:3000/users/",
-		updateUser: "http://localhost:3000/users/update"
+		acountUser: "http://localhost:3000/users/getuser",
+		updateUser: "http://localhost:3000/users/update",
+		logOutUser: "http://localhost:3000/users/logout"
 	}
 };
 
