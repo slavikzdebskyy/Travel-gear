@@ -1,6 +1,6 @@
 <div class="item-in-bag-content">
 	<div class="item-in-bag" *ngFor="let item of itemsInBag">
-		<app-item [item]="item" routerLink = '/item/{{item.id}}'></app-item>
-		<button mat-raised-button color="warn" (click)="removeFromBag(item.id)">Видалити</button>
+		<app-item [item]="item" routerLink = '/item/{{item._id}}'></app-item>
+		<button mat-raised-button color="warn" (click)="removeFromBag(item._id)">Видалити</button>
 	</div> 
 </div>

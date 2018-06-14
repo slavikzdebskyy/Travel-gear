@@ -17,17 +17,13 @@ export class BagComponent implements OnInit {
   ngOnInit() {
 		this.itemsInBag = this.bagService.getAllItemsFromBag();
 	}
-	
-
 
 	removeFromBag (id) {
-					this.bagService.removeFromBag(id);	
+		this.bagService.removeFromBag(id);	
 		this.itemsInBag = this.bagService.getAllItemsFromBag();
 		if(this.itemsInBag.length === 0) {
 			this.router.navigate(['']);
 		}
 	}
-
-
 
 }

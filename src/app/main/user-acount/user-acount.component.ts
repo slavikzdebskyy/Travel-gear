@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, DoCheck } from '@angular/core';
 import { Item } from '../../models/item.model';
 import { BagService } from '../../Services/bag.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,6 +7,8 @@ import { UserService } from '../../Services/user.service';
 import { NgForm } from '@angular/forms';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ItemsService } from '../../Services/items.service';
+import { HeaderDataService } from '../../Services/header.data.service';
 
 
 @Component({
@@ -14,13 +16,16 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './user-acount.component.html',
   styleUrls: ['./user-acount.component.less']
 })
-export class UserAcountComponent implements OnInit {
+export class UserAcountComponent implements OnInit, DoCheck {
 
+	
 	
 	requaredFeld: any;
 	doubleItemMessageClass: string;
 	message: string;
+	itemsAll: Item[] = [];
 	itemsInBag: Item[] = [];
+	itemsInFavorite: Item[] = [];
 	isBagEmpty: boolean = false;
 	isFavoriteEmpty: boolean = false;
 	user: User = new User('','','','','','','',[]);
@@ -29,7 +34,8 @@ export class UserAcountComponent implements OnInit {
 	UserDataForm: NgForm;
 
 	constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer, private route: ActivatedRoute,
-							private bagService: BagService, private userService: UserService, private router: Router) {
+							private bagService: BagService, private userService: UserService, private router: Router,
+							private itemService: ItemsService, private headerDataService: HeaderDataService) {
 		iconRegistry.addSvgIcon(
 			'stars',
 			sanitizer.bypassSecurityTrustResourceUrl('./assets/images/baseline-stars-24px.svg'));
@@ -37,10 +43,19 @@ export class UserAcountComponent implements OnInit {
 
   ngOnInit() {
 		this.userService.getUserByToken().subscribe(res => {
-		this.user = res;		
-		this.isFavoriteEmpty = Boolean(this.user.favorite.length);				
-		});	
-		this.itemsInBag = this.bagService.getAllItemsFromBag();						
+		this.user = res;
+		this.headerDataService.setLoginUser(this.user);
+		this.itemsInFavorite = this.headerDataService.getloginUser().favorite;
+		});			
+	
+						
+	
+	}
+	ngDoCheck(): void {		
+		this.itemsInBag = this.bagService.getAllItemsFromBag();
+		this.itemsInFavorite = this.headerDataService.getloginUser().favorite;
+		this.isFavoriteEmpty = Boolean(this.user.favorite.length);
+		this.isBagEmpty = Boolean(this.bagService.getAllItemsFromBag().length);
 	}
 
 	
@@ -61,7 +76,7 @@ export class UserAcountComponent implements OnInit {
 						this.doubleItemMessageClass = 'show-message-done';					
 							setTimeout(() => {
 								this.doubleItemMessageClass = '';
-								this.router.navigate(['user_acount/', naviEmail]);			
+								this.router.navigate(['user_acount']);			
 							}, 4000);
 					});
 				} else {
@@ -100,22 +115,29 @@ export class UserAcountComponent implements OnInit {
 
 	removeFromBag (id) {
 		this.bagService.removeFromBag(id);	
-		this.itemsInBag = this.bagService.getAllItemsFromBag();
-		if(this.itemsInBag.length === 0) {
-			this.isBagEmpty = false;
-		}
 	}
 
 	removeFromFavorite (id) {
 		for(let i = 0; i < this.user.favorite.length; i++) {
-			if(this.user.favorite[i].id === id) {
-				this.user.favorite.splice(i, 1);
+			if(this.user.favorite[i]._id === id) {
+				this.user.favorite.splice(i, 1);	
 			}
 		}
-		localStorage.setItem('user', JSON.stringify(this.user));
 		if(this.user.favorite.length === 0) {
 			this.isFavoriteEmpty = false;
 		}
+		
+		this.userService.updateUser(this.user).subscribe(res => {
+			if(res) {
+				this.message = 'Видалено !';
+				this.doubleItemMessageClass = 'show-message-done';
+				this.headerDataService.setLoginUser(this.user);					
+				setTimeout(() => {
+					this.doubleItemMessageClass = '';
+					this.router.navigate(['user_acount']);
+				}, 3000);
+			}
+		})
 	}
 
 	cancel() {

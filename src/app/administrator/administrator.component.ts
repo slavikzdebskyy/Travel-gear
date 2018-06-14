@@ -6,6 +6,7 @@ import { NavbarService } from '../Services/navbar.service';
 import { MatSelectChange} from '@angular/material/select';
 import { ItemDetailsService } from '../Services/item.details.service';
 import { ItemsService } from '../Services/items.service';
+import { Router } from '@angular/router';
 
 
 
@@ -27,7 +28,7 @@ export class AdministratorComponent implements OnInit {
 	sizeArr: string[];
 
 	constructor(private itemService: ItemsService, private navbarService: NavbarService,
-							private itemDetails: ItemDetailsService) { }
+							private itemDetails: ItemDetailsService, private router: Router) { }
 
   ngOnInit() {
 		this.menuCategory = this.navbarService.getMenuItems();
@@ -45,6 +46,9 @@ export class AdministratorComponent implements OnInit {
 		}
 		this.itemService.saveItem(item).subscribe( res => {
 			console.log(res);
+			// this.router.navigate(['administrator']);
+			this.newItemForm.resetForm();
+
 		})
 		// this.newItemForm.resetForm();
 		

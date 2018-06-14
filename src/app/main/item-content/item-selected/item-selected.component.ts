@@ -8,6 +8,7 @@ import { AuthLoginService } from '../../../Services/auth.service';
 import { Item } from '../../../models/item.model';
 import { UserService } from '../../../Services/user.service';
 import { User } from '../../../models/user.model';
+import { HeaderDataService } from '../../../Services/header.data.service';
 
 @Component({
   selector: 'app-item-selected',
@@ -25,7 +26,7 @@ export class ItemSelectedComponent implements OnInit {
 	constructor(private itemService: ItemsService, private route: ActivatedRoute,
 							private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer,
 							private bagService: BagService,  private auth: AuthLoginService, 
-							private userService: UserService) { 
+							private userService: UserService, private headerDataService: HeaderDataService) { 
 		iconRegistry.addSvgIcon(
 			'stars',
 			sanitizer.bypassSecurityTrustResourceUrl('./assets/images/baseline-favorite_border-24px.svg'));
@@ -38,6 +39,9 @@ export class ItemSelectedComponent implements OnInit {
 		let id = this.route.snapshot.params['id'];
 		this.itemService.getItemById(id).subscribe(res => {
 			this.item = res;
+		});	
+		this.userService.getUserByToken().subscribe(res => {
+			this.user = res;
 		});	
 		
 	}
@@ -70,24 +74,22 @@ export class ItemSelectedComponent implements OnInit {
 
 	addToFavorite () {
 		if(this.auth.canActivate){
-			let isThisItemInFavorites = true;
-			// let email = localStorage.getItem('userEmail');
-			this.userService.getUserByToken().subscribe(res => {
-				this.user = res;
+			let isThisItemInFavorites = false;
 				if(this.user.favorite.length > 0){	
 					for(let i = 0; i < this.user.favorite.length; i++) {
 						if(this.user.favorite[i]._id === this.item._id) {					
-							isThisItemInFavorites = false;
-						} else {
 							isThisItemInFavorites = true;
+						} else {
+							isThisItemInFavorites = false;						
 						}						
 					}
 				}					
-			});		
-			if(isThisItemInFavorites){
+	
+			if(!isThisItemInFavorites){
 				this.user.favorite.push(this.item);
 				this.userService.updateUser(this.user).subscribe(result => {
 					if(result){
+						this.headerDataService.setLoginUser(this.user);
 						this.message = this.item.title + ' успішно додано до списку бажань.';
 						this.doubleItemMessageClass = 'show-message-done';					
 							setTimeout(() => {

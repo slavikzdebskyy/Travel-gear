@@ -2,7 +2,30 @@
 	<mat-card>
 		<mat-card-content>
 			<h2>Вітаємо {{user.name}}</h2>
-			<mat-tab-group class="demo-tab-group">
+			<mat-tab-group class="demo-tab-group">				
+				<mat-tab label="Мої покупки" selectedIndex>
+					<div class="demo-tab-content">
+						<div class="item-in-bag-content">
+							<div class="item-in-bag" *ngFor="let item of itemsInBag">
+								<app-item [item]="item" routerLink = '/item/{{item.id}}'></app-item>
+								<button mat-raised-button color="warn" (click)="removeFromBag(item.id)">Видалити</button>
+							</div> 						
+							<h2 *ngIf="!isBagEmpty">Ви поки ще не вибрали жодного товару.</h2>
+						</div>
+						<button *ngIf="isBagEmpty" mat-raised-button color="primary">Оформити замовлення</button>
+					</div>				
+				</mat-tab>
+				<mat-tab label="Список бажань">
+						<div class="demo-tab-content">
+							<div class="item-in-bag-content">
+								<div class="item-in-bag" *ngFor="let item of itemsInFavorite">
+									<app-item [item]="item" routerLink = '/item/{{item._id}}'></app-item>
+									<button mat-raised-button color="warn" (click)="removeFromFavorite(item._id)">Не хочу</button>
+								</div> 						
+								<h2 *ngIf="!isFavoriteEmpty">Ви поки ще вподобали жодного товару.</h2>
+							</div>							
+						</div>
+				</mat-tab>
 				<mat-tab label="Мої дані">
 					<div class="demo-tab-content" >
 						<form #UserDataForm="ngForm" (ngSubmit)="updateUser()">
@@ -32,29 +55,6 @@
 							</div>
 						</form>	
 					</div>
-				</mat-tab>
-				<mat-tab label="Мої покупки" selectedIndex>
-					<div class="demo-tab-content">
-						<div class="item-in-bag-content">
-							<div class="item-in-bag" *ngFor="let item of itemsInBag">
-								<app-item [item]="item" routerLink = '/item/{{item.id}}'></app-item>
-								<button mat-raised-button color="warn" (click)="removeFromBag(item.id)">Видалити</button>
-							</div> 						
-							<h2 *ngIf="!isBagEmpty">Ви поки ще не вибрали жодного товару.</h2>
-						</div>
-						<button *ngIf="isBagEmpty" mat-raised-button color="primary">Оформити замовлення</button>
-					</div>				
-				</mat-tab>
-				<mat-tab label="Список бажань">
-						<div class="demo-tab-content">
-							<div class="item-in-bag-content">
-								<div class="item-in-bag" *ngFor="let item of user.favorite">
-									<app-item [item]="item" routerLink = '/item/{{item.id}}'></app-item>
-									<button mat-raised-button color="warn" (click)="removeFromFavorite(item.id)">Не хочу</button>
-								</div> 						
-								<h2 *ngIf="!isFavoriteEmpty">Ви поки ще вподобали жодного товару.</h2>
-							</div>							
-						</div>
 				</mat-tab>				
 			</mat-tab-group>
 		</mat-card-content>

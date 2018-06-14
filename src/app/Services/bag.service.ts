@@ -22,8 +22,7 @@ export class BagService {
  removeFromBag (id:string) {	
 	for(let i = 0; i < this.itemsInBag.length; i++){
 		if(this.itemsInBag[i]._id === id){
-			this.itemsInBag.splice(i, 1);
-			// console.log(this.itemsInBag);
+			this.itemsInBag.splice(i, 1);			
 		}
 	}
 		localStorage.setItem('ItemsInBag', JSON.stringify(this.itemsInBag));	

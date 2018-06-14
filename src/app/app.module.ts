@@ -37,6 +37,7 @@ import { NouisliderModule } from 'ng2-nouislider';
 import { AdministratorComponent } from './administrator/administrator.component';
 import { ItemDetailsService } from './Services/item.details.service';
 import { FooterComponent } from './main/footer/footer.component';
+import { HeaderDataService } from 'src/app/Services/header.data.service';
 
 
 
@@ -85,7 +86,7 @@ import { FooterComponent } from './main/footer/footer.component';
 	],
 
 	providers: [ItemsService,	NavbarService, ItemDetailsService,
-							BagService,	UserService, AuthLoginService],
+							BagService,	UserService, AuthLoginService, HeaderDataService],
 							
   bootstrap: [AppComponent]
 })
