@@ -34,8 +34,8 @@
 				</span>
 			</span>
 		</div>
-		<div>
-			<mat-icon svgIcon="stars">			</mat-icon>
+		<div (click)="goToMyFavorite()">
+			<mat-icon svgIcon="stars"></mat-icon>
 			<span class="my-favorite">
 				 Список бажань
 				 <span class="my-favorite-count" *ngIf="myFavoriteCount>0">
@@ -44,7 +44,7 @@
 			</span>
 		</div>	
 	</div>
-	<div id="message" [class]="doubleItemMessage">Кошик порожній !</div>
+	<div id="message" [class]="doubleItemMessageClass">{{message}}</div>
 </div>
 
 

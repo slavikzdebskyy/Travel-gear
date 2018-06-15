@@ -9,7 +9,7 @@ export class HeaderDataService {
 	constructor(private httpClient: HttpClient) {	}
 	private endpoints: any = environment.local;
 	private loginUser: User = new User('','','','','','','',[]);
-
+	private filterSideBarVisible: boolean = true;
 
 	setLoginUser (user:User) {	
 		this.loginUser = user;
@@ -17,6 +17,13 @@ export class HeaderDataService {
 
 	getloginUser () {
 		return this.loginUser;
+	}
+
+	setfilterSideBarVisible (value:boolean) {
+		this.filterSideBarVisible = value;
+	}
+	getfilterSideBarVisible () {
+		return this.filterSideBarVisible;
 	}
 
 	addHeaders () {
@@ -27,7 +34,8 @@ export class HeaderDataService {
 		return new HttpHeaders ({
 			'Contetnt-Type' : 'application/json',
 			'Authorization' : tokenLS,
-			'Access-Control-Allow-Origin' : '*',
+			// 'Access-Control-Allow-Origin' : '*',
 		});
 	}
 }
+

@@ -49,7 +49,7 @@ export class UserService {
 		return new HttpHeaders ({
 			'Contetnt-Type' : 'application/json',
 			'Authorization' : token,
-			'Access-Control-Allow-Origin' : '*',
+			// 'Access-Control-Allow-Origin' : '*',
 		});
 	}
 

@@ -1,14 +1,13 @@
 
 <div class="container">
-	
-	<mat-card class="example-card"  appHoverItem>
+	<div class="favorite" (click)="addToFavorite()">
+		<mat-icon svgIcon="stars"></mat-icon>
+	</div>
+	<mat-card class="example-card"  appHoverItem routerLink = '/item/{{item._id}}'>
 		<div class="promo-container">
 				<div class="promo" *ngIf="item.promo">
 					{{item.promoTitle}}
-				</div>
-				<div id="favorite">
-					<mat-icon svgIcon="stars"></mat-icon>
-				</div>
+				</div>				
 		</div>
   <mat-card-header>
     <mat-card-title class="title">{{item.title}}</mat-card-title>
@@ -17,8 +16,7 @@
   <mat-card-content>	 
 		<div class="colors">
 			<div class="color" *ngFor="let el of item.colors">
-				<div [ngStyle] = "{background:el}"></div>
-			
+				<div [ngStyle] = "{background:el}"></div>			
 			</div>
 		</div>
 		<p>
@@ -27,5 +25,5 @@
 		</p>
   </mat-card-content> 
 </mat-card>
-
+<div id="message" [class]="doubleItemMessageClass">{{message}}</div>
 </div>

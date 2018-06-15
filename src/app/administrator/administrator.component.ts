@@ -46,14 +46,10 @@ export class AdministratorComponent implements OnInit {
 		}
 		this.itemService.saveItem(item).subscribe( res => {
 			console.log(res);
-			// this.router.navigate(['administrator']);
+			this.categorySelectVisible = false;
+			this.subCategorySelectVisible = false;
 			this.newItemForm.resetForm();
-
-		})
-		// this.newItemForm.resetForm();
-		
-		// console.log(this.newItemForm.value.colors);
-
+		})	
 	}
 
 	categoryVisible(event: MatSelectChange, i:number, j:number){
@@ -65,6 +61,10 @@ export class AdministratorComponent implements OnInit {
 					this.categorySelectVisible = true;
 				}			
 		}
+	}
+
+	close () {
+		this.router.navigate(['']);
 	}
 
 }

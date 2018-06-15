@@ -4,6 +4,7 @@ import { NavbarService } from '../../Services/navbar.service';
 import { ItemDetailsService } from '../../Services/item.details.service';
 import { Item } from '../../models/item.model';
 
+
 @Component({
   selector: 'app-filter-sidebar',
   templateUrl: './filter-sidebar.component.html',
@@ -15,8 +16,8 @@ export class FilterSidebarComponent implements OnInit {
 	priceValue: number[] = [0, 1000];	
 	subCategoryIndex: number;
 	subCategory: any;
-	allColors: any;
-	allBrands: any[];
+	allColors: any[]=[];
+	allBrands: any[]=[];
 	items: Item[];
 	category: any[] = [];
 	menuItems: any[];
@@ -27,7 +28,6 @@ export class FilterSidebarComponent implements OnInit {
 	 }
 
   ngOnInit() {	
-
 		this.menuItems = this.navbarService.getMenuItems();
 		this.itemService.getAllItems().subscribe(
 			res => {
@@ -35,12 +35,10 @@ export class FilterSidebarComponent implements OnInit {
 				this.priceMax = this.getMaxPrice();
 				this.allBrands = this.getAllProperty('brand');
 			});	
-
 		this.allColors = this.itemDetailService.getAllColors();
-
 	}
 
-	test() {
+		test() {
 		// let col = this.itemService.getAllProperty('size');
 		console.log(this.allBrands);
 	}
@@ -94,7 +92,7 @@ export class FilterSidebarComponent implements OnInit {
 		} else {
 				return 1;
 		}
-		})
+		});
 		return propertyArray;
 	}
 

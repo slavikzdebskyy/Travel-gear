@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ItemsService } from '../../../Services/items.service';
 import { ActivatedRoute } from '@angular/router';
-import { MatIconRegistry } from '@angular/material';
+import { MatIconRegistry, MAT_SLIDER_VALUE_ACCESSOR } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BagService } from '../../../Services/bag.service';
 import { AuthLoginService } from '../../../Services/auth.service';
@@ -15,8 +15,8 @@ import { HeaderDataService } from '../../../Services/header.data.service';
   templateUrl: './item-selected.component.html',
   styleUrls: ['./item-selected.component.less']
 })
-export class ItemSelectedComponent implements OnInit {
-	
+export class ItemSelectedComponent implements OnInit, OnDestroy {
+
 	items: Item[] = [];
 	item: Item = new Item('','','','','','','','','','','','','','');
 	user: User;
@@ -43,9 +43,13 @@ export class ItemSelectedComponent implements OnInit {
 		this.userService.getUserByToken().subscribe(res => {
 			this.user = res;
 		});	
-		
+		this.headerDataService.setfilterSideBarVisible(false);
 	}
 
+		
+	ngOnDestroy(): void {
+		this.headerDataService.setfilterSideBarVisible(true);
+	}
 	
 	
 

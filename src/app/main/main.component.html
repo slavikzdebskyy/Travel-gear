@@ -1,9 +1,9 @@
-<app-header (headerInfoEvent)=getHeaderinfo($event)></app-header>
+<app-header></app-header>
 
 <div class="container">	
 <app-navbar></app-navbar>
 	<div class="content">
-		<app-filter-sidebar></app-filter-sidebar>
+		<app-filter-sidebar  *ngIf="filterSideBarVisible"></app-filter-sidebar>
 		<router-outlet></router-outlet>		
 	</div>
 </div>

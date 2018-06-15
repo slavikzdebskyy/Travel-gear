@@ -15,19 +15,7 @@ export class AuthLoginService implements CanActivate {
 		if(token){		
 			return true;
 		} else {
-			// this.router.navigate(['login']);	
 			return false;
 		}
-		
-	}
-
-	
-
-	// isLogin () {
-	// 	if(localStorage.getItem('isLog') === 'true') {
-	// 		return true;
-	// 	} else {
-	// 		return false;
-	// 	}
-	// }
+	}	
 }

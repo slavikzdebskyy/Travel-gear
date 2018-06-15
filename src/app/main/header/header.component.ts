@@ -17,7 +17,8 @@ import { HeaderDataService } from '../../Services/header.data.service';
 })
 export class HeaderComponent implements OnInit, DoCheck {
 
-	doubleItemMessage: string = '';
+	doubleItemMessageClass: string = '';
+	message :string = '';
 	logoImage: string = './assets/images/logo-highlander.png';
 	myPurchasesCount: number = 0;
 	myFavoriteCount: number = 0;	
@@ -79,11 +80,32 @@ export class HeaderComponent implements OnInit, DoCheck {
 	goToMyAccount () {	
 		this.userService.getUserByToken().subscribe(res => {
 		if(res){
-			this.router.navigate(['user_acount/']);
+			this.router.navigate(['user_acount']);
 		} else {
 			this.router.navigate(['login']);
 		}
 		});			
+	}
+
+	goToMyFavorite () {	
+		let activate = localStorage.getItem('token');
+		if(activate){
+			if(this.myFavoriteCount) {
+				this.router.navigate(['user_acount']);
+			} else {
+				this.message = 'Ви ще поки не вподобали жодного товару !';
+				this.doubleItemMessageClass = 'show-message-error';					
+				setTimeout(() => {
+					this.doubleItemMessageClass = '';
+				}, 3000);
+			}
+		} else {
+			this.message = 'Спочатку авторизуйтеся !';
+				this.doubleItemMessageClass = 'show-message-error';					
+				setTimeout(() => {
+					this.doubleItemMessageClass = '';
+				}, 3000);
+		}
 	}
 	
 	logOut () {
@@ -100,12 +122,18 @@ export class HeaderComponent implements OnInit, DoCheck {
 	goToMyBag () {
 		let itemsInBag = this.bagService.getAllItemsFromBag();
 		if(itemsInBag.length){
-			this.router.navigate(['mybag']);
+			let activate = localStorage.getItem('token');
+			if(activate){
+				this.router.navigate(['user_acount']);
+			} else {				
+				this.router.navigate(['mybag']);
+			}
 		} else {
-			this.doubleItemMessage = 'show-message';
-					setTimeout(() => {
-						this.doubleItemMessage = '';
-					}, 3000);
+			this.message = 'Кошик порожній !';
+			this.doubleItemMessageClass = 'show-message-error';					
+			setTimeout(() => {
+				this.doubleItemMessageClass = '';
+			}, 3000);
 		}
 	}
 

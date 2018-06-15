@@ -55,7 +55,7 @@ export class UserAcountComponent implements OnInit, DoCheck {
 		this.itemsInBag = this.bagService.getAllItemsFromBag();
 		this.itemsInFavorite = this.headerDataService.getloginUser().favorite;
 		this.isFavoriteEmpty = Boolean(this.user.favorite.length);
-		this.isBagEmpty = Boolean(this.bagService.getAllItemsFromBag().length);
+		this.isBagEmpty = Boolean(this.itemsInBag.length);
 	}
 
 	
@@ -116,7 +116,7 @@ export class UserAcountComponent implements OnInit, DoCheck {
 	removeFromBag (id) {
 		this.bagService.removeFromBag(id);	
 	}
-
+	
 	removeFromFavorite (id) {
 		for(let i = 0; i < this.user.favorite.length; i++) {
 			if(this.user.favorite[i]._id === id) {
