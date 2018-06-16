@@ -39,6 +39,10 @@ import { ItemDetailsService } from './Services/item.details.service';
 import { FooterComponent } from './main/footer/footer.component';
 import { HeaderDataService } from 'src/app/Services/header.data.service';
 import { FilterPipe } from 'src/app/main/item-content/filter.pipe';
+import { FilterPipeByPrice } from 'src/app/main/item-content/filterbyprice.pipe';
+import { FilterPipeByCategory } from './main/item-content/filterbycategory.pipe';
+import { FilterPipeBySubCategory } from './main/item-content/filterbysubcategory.pipe';
+import { FilterPipeByBrands } from './main/item-content/filterbybrands.pipe';
 
 
 
@@ -62,7 +66,11 @@ import { FilterPipe } from 'src/app/main/item-content/filter.pipe';
 		FilterSidebarComponent,
 		AdministratorComponent,
 		FooterComponent,
-		FilterPipe
+		FilterPipe,
+		FilterPipeByPrice,
+		FilterPipeByCategory,
+		FilterPipeBySubCategory,
+		FilterPipeByBrands
   ],
   imports: [
 		BrowserModule,
