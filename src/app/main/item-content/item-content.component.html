@@ -1,5 +1,5 @@
 <div class="item-content">
-	<div class="item" *ngFor="let item of items">
+	<div class="item" *ngFor="let item of items | filter:priceValue:categorySelected:brandSelected:subCategorySelected">
 		<app-item [item]="item"></app-item>
 	</div> 
 </div>

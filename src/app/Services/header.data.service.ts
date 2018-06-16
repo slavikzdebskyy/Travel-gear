@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class HeaderDataService {
 
-	constructor(private httpClient: HttpClient) {	}
+	// constructor(private httpClient: HttpClient) {	}
 	private endpoints: any = environment.local;
 	private loginUser: User = new User('','','','','','','',[]);
 	private filterSideBarVisible: boolean = true;
@@ -22,20 +22,24 @@ export class HeaderDataService {
 	setfilterSideBarVisible (value:boolean) {
 		this.filterSideBarVisible = value;
 	}
+
 	getfilterSideBarVisible () {
 		return this.filterSideBarVisible;
 	}
 
-	addHeaders () {
-		let tokenLS = localStorage.getItem('token');
-		if(!tokenLS){
-			tokenLS = 'some token';
-		}
-		return new HttpHeaders ({
-			'Contetnt-Type' : 'application/json',
-			'Authorization' : tokenLS,
-			// 'Access-Control-Allow-Origin' : '*',
-		});
-	}
+	// addHeaders () {
+	// 	let tokenLS = localStorage.getItem('token');
+	// 	if(!tokenLS){
+	// 		tokenLS = 'some token';
+	// 	}
+	// 	return new HttpHeaders ({
+	// 		'Contetnt-Type' : 'application/json',
+	// 		'Authorization' : tokenLS,
+	// 		// 'Access-Control-Allow-Origin' : '*',
+	// 	});
+	// }
+
+
+
 }
 

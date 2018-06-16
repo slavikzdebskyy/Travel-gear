@@ -3,6 +3,7 @@ import { ItemsService } from '../../Services/items.service';
 import { NavbarService } from '../../Services/navbar.service';
 import { ItemDetailsService } from '../../Services/item.details.service';
 import { Item } from '../../models/item.model';
+import { HeaderDataService } from '../../Services/header.data.service';
 
 
 @Component({
@@ -12,14 +13,14 @@ import { Item } from '../../models/item.model';
 })
 export class FilterSidebarComponent implements OnInit {
 
-	priceMax: number = 1000;
+	priceMax: number;
 	priceValue: number[] = [0, 1000];	
 	subCategoryIndex: number;
-	subCategory: any;
+	subCategory: boolean[]=[];
 	allColors: any[]=[];
 	allBrands: any[]=[];
 	items: Item[];
-	category: any[] = [];
+	brandsSelected: boolean[] = [];
 	menuItems: any[];
 
 	constructor(private itemService: ItemsService, private navbarService: NavbarService,
@@ -33,16 +34,13 @@ export class FilterSidebarComponent implements OnInit {
 			res => {
 				this.items = res;
 				this.priceMax = this.getMaxPrice();
+				this.priceValue = [0, this.priceMax];
+				this.itemDetailService.setPriceValue(this.priceValue);
 				this.allBrands = this.getAllProperty('brand');
 			});	
 		this.allColors = this.itemDetailService.getAllColors();
 	}
 
-		test() {
-		// let col = this.itemService.getAllProperty('size');
-		console.log(this.allBrands);
-	}
-	
 	getMaxPrice (): number {
 		let max = 0;
 		for(let i = 0; i < this.items.length; i++) {
@@ -94,6 +92,32 @@ export class FilterSidebarComponent implements OnInit {
 		}
 		});
 		return propertyArray;
+	}
+
+	rangePriceChanged () {
+		this.itemDetailService.setPriceValue(this.priceValue);
+	}
+
+	categorySelected () {
+		let result = [];
+		let arr = this.menuItems[this.subCategoryIndex].children
+		for(let i = 0; i < arr.length; i++){
+			if(this.subCategory[i]){
+				result.push(arr[i].value);
+			}
+		}
+		this.itemDetailService.setCategorySelected(result);		
+	}
+
+	brandSelected () {
+		let result = [];
+		for(let y = 0; y < this.allBrands.length; y++){
+			if(this.brandsSelected[y]){
+				result.push(this.allBrands[y]);
+			}
+		}
+		this.itemDetailService.setBrandsSelected(result);
+		// console.log(this.itemDetailService.getBrandsSelected());
 	}
 
 }

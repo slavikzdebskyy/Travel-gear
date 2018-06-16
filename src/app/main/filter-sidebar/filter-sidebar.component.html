@@ -4,7 +4,7 @@
 		<p> 
 			<span >від </span><span class="price"> {{priceValue[0]}} </span> грн <span></span>  <span>до</span> <span class="price"> {{priceValue[1]}} </span> грн
 		</p>
-		<nouislider [connect]="false" [min]="0" [max]="priceMax" [step]="10" [(ngModel)]="priceValue"></nouislider>
+		<nouislider [connect]="false" [min]="0" [max]="priceMax" [step]="10" [(ngModel)]="priceValue" (change)="rangePriceChanged()" *ngIf="priceMax"></nouislider>
 	</div>
 			
 
@@ -15,20 +15,20 @@
 
 	<mat-radio-group  class="category" [(ngModel)]="subCategoryIndex">
 		<h5>Категорія</h5>
-		<mat-radio-button class="category-radio" color="primary" *ngFor="let item of menuItems; let i=index" [value]="i" [checked]="item.checked">{{item.value}}</mat-radio-button>
+		<mat-radio-button class="category-radio" color="primary" *ngFor="let item of menuItems; let i=index" [value]="i">{{item.value}}</mat-radio-button>
 	</mat-radio-group>
 	<section class="subcategory" *ngIf="subCategoryIndex!=undefind">	
 		<h5>Підкатегорія</h5>		
-		<mat-checkbox class="category-checkbox" color="primary" *ngFor="let item of menuItems[subCategoryIndex].children">{{item.value}}</mat-checkbox><br>
+		<mat-checkbox class="category-checkbox" color="primary" *ngFor="let item of menuItems[subCategoryIndex].children; let k=index"  [(ngModel)]="subCategory[k]" (change)="categorySelected()">{{item.value}}</mat-checkbox><br>
 	</section>
 	<section class="brands">	
 		<h5>Виробники</h5>		
-		<mat-checkbox class="category-checkbox" color="primary" *ngFor="let brand of allBrands">{{brand}}</mat-checkbox><br>
+		<mat-checkbox class="category-checkbox" color="primary" *ngFor="let brand of allBrands; let u=index"  [(ngModel)]="brandsSelected[u]" (change)="brandSelected()">{{brand}}</mat-checkbox><br>
 	</section>
-	<section class="colors">	
+	<!-- <section class="colors">	
 		<h5>Кольори</h5>		
 		<mat-checkbox class="category-colors" color="primary" *ngFor="let color of allColors"><div [ngStyle]="{background:color}"></div></mat-checkbox><br>
-	</section>
+	</section> -->
 
 
 

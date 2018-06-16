@@ -38,6 +38,7 @@ import { AdministratorComponent } from './administrator/administrator.component'
 import { ItemDetailsService } from './Services/item.details.service';
 import { FooterComponent } from './main/footer/footer.component';
 import { HeaderDataService } from 'src/app/Services/header.data.service';
+import { FilterPipe } from 'src/app/main/item-content/filter.pipe';
 
 
 
@@ -60,7 +61,8 @@ import { HeaderDataService } from 'src/app/Services/header.data.service';
     NavbarMenuChildComponent,
 		FilterSidebarComponent,
 		AdministratorComponent,
-		FooterComponent
+		FooterComponent,
+		FilterPipe
   ],
   imports: [
 		BrowserModule,

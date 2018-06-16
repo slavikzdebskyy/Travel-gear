@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { NavbarService } from '../../../Services/navbar.service';
 import { NavItemInterface } from '../../../interfaces/navbar.interface';
+import { ItemDetailsService } from '../../../Services/item.details.service';
 
 @Component({
   selector: 'app-navbar-menu-child',
@@ -15,10 +16,17 @@ export class NavbarMenuChildComponent implements OnInit {
 	@ViewChild('childMenu') 
 	public childMenu;
 
-  constructor(private navbarService: NavbarService) { }
+  constructor(private navbarService: NavbarService, private itemDetailService: ItemDetailsService) { }
 
   ngOnInit() {
 		
   }
-
+	filteredByCategory(value){
+		let arr = [value];
+		this.itemDetailService.setCategorySelected(arr);
+	}
+	
+	filteredBySubCategory(value){
+		this.itemDetailService.setSubCategorySelected(value);
+	}
 }
