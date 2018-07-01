@@ -9,26 +9,26 @@
 		</form>	
 		<div (click)="home()">
 			<mat-icon svgIcon="home"></mat-icon>
-			<span>
+			<span *ngIf="mediaXS">
 				Головна
 			</span>
 		</div>
 		<div (click)="goToMyAccount()">
 			<mat-icon svgIcon="account"></mat-icon>
-			<span>
-				{{account}}
+			<span *ngIf="mediaXS">
+				{{accountName}}
 			</span>
 		</div>
 		<div (click)="logOut()" *ngIf="logoutVisible">
 			<mat-icon svgIcon="logout"></mat-icon>
-			<span>
+			<span *ngIf="mediaXS">
 				Вийти
 			</span>
 		</div>
 		<div (click)="goToMyBag()">
 			<mat-icon svgIcon="shopping-cart"></mat-icon>
 			<span class="my-purchases">
-				Мої покупки
+				{{purchaseName}}
 				<span class="my-purchases-count" *ngIf="myPurchasesCount>0">
 					({{myPurchasesCount}})
 				</span>
@@ -37,7 +37,7 @@
 		<div (click)="goToMyFavorite()">
 			<mat-icon svgIcon="stars"></mat-icon>
 			<span class="my-favorite">
-				 Список бажань
+				 {{favoriteName}}
 				 <span class="my-favorite-count" *ngIf="myFavoriteCount>0">
 					({{myFavoriteCount}})
 				</span>

@@ -16,3 +16,29 @@
 		color: #fff;
 	}//	button[mat-button]
 }//	container
+
+@media only screen and (max-width: 850px) {
+	.container {
+		padding: 0;
+		button[mat-button] {
+			font-size: 14px;
+			min-width: 80px!important;	
+			padding: 0;
+		}//	button[mat-button]
+	}//	container
+}//	@media only screen and (max-width: 850px)
+
+@media only screen and (max-width: 750px) {
+	.container {
+		button[mat-button] {
+			font-size: 14px;	
+			min-width: 70px!important;
+		}//	button[mat-button]
+	}//	container
+}//	@media only screen and (max-width: 750px)
+
+@media only screen and (max-width: 600px) {
+	.container {
+	display: none;
+	}//	container
+}//	@media only screen and (max-width: 600px)

@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
 @Injectable()
 export class UserService {
 
-	constructor(private httpClient: HttpClient) {	}
+	 constructor(private httpClient: HttpClient) {	}
 
 	user: User;
 	private endpoints: any = environment.local;
@@ -32,8 +32,7 @@ export class UserService {
 		let headers = {headers : this.addHeaders()};
 		return this.httpClient.get<User>(this.endpoints.acountUser, headers);
 	}
-	
-	
+		
 	logout () {
 		let headers = {headers : this.addHeaders()};
 		let token = {'token': localStorage.getItem('token')};
@@ -49,7 +48,7 @@ export class UserService {
 		return new HttpHeaders ({
 			'Contetnt-Type' : 'application/json',
 			'Authorization' : token,
-			// 'Access-Control-Allow-Origin' : '*',
+			'Access-Control-Allow-Origin' : '*',
 		});
 	}
 

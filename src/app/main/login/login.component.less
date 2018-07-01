@@ -83,6 +83,7 @@
 			display: flex;
 			display: -webkit-flex;
 			justify-content: space-between;
+			flex-wrap: wrap;
 			width: 100%;
 			margin-top: 20px;			
 			button:not([mat-button]) {
@@ -91,14 +92,16 @@
 				color: white;
 				padding: 14px 20px;								
 				border: none;
-				cursor: pointer;
-				width: 40%;
+				cursor: pointer;			
 				opacity: 0.9;
 				float: left;
 				outline: none;
 				&:hover {
 					opacity: 1;
 				}// button:hover
+			}// button
+			button{
+				width: 50%;
 			}// button
 		}//	.buttons-container
 	}//	form.Sign-up-form
@@ -116,8 +119,25 @@
 	to {opacity:1 ;}
 }
 
-@media screen and (max-width: 300px) {
-	.cancelbtn, .signupbtn {
-		 width: 100%;
-	}
-}
+@media screen and (max-width: 950px) {
+	.modal {	
+		form {
+			width: 300px;
+		}//	form
+	}//	modal
+}//	@media screen and (max-width: 950px)
+
+@media screen and (max-width: 400px) {
+	.modal {	
+		form {
+			.buttons-container{
+				justify-content: space-between;
+				flex-direction: column;
+				align-items: center;
+				button{
+					width: 90%;
+				}// button
+			}//	buttons-container
+		}//	form
+	}//	modal
+}//	@media screen and (max-width: 400px)

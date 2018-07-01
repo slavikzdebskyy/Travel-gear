@@ -1,4 +1,13 @@
-<div class="filer-container">	
+<div class="filer-container">		
+	<div class="active-filters">
+		<span *ngIf="priceValueFilter.length">{{priceValueFilter[0]}}грн - {{priceValueFilter[1]}}грн</span>
+		<span *ngFor="let cat of categorySelectedFilter">{{cat}}</span>
+		<span *ngFor="let brandF of brandSelectedFilter">{{brandF}}</span>
+		<button (click)="resetFilters()"
+			*ngIf="priceValueFilter.length || categorySelectedFilter.length || brandSelectedFilter.length || subCategoryFilter"
+			>Відмінити фільтри
+		</button>
+	</div>
 	<div class="price-slider">
 		<h5>Ціна</h5>
 		<p> 
@@ -6,13 +15,6 @@
 		</p>
 		<nouislider [connect]="false" [min]="0" [max]="priceMax" [step]="10" [(ngModel)]="priceValue" (change)="rangePriceChanged()" *ngIf="priceMax"></nouislider>
 	</div>
-			
-
-	
-
-
-
-
 	<mat-radio-group  class="category" [(ngModel)]="subCategoryIndex">
 		<h5>Категорія</h5>
 		<mat-radio-button class="category-radio" color="primary" *ngFor="let item of menuItems; let i=index" [value]="i">{{item.value}}</mat-radio-button>
@@ -25,14 +27,4 @@
 		<h5>Виробники</h5>		
 		<mat-checkbox class="category-checkbox" color="primary" *ngFor="let brand of allBrands; let u=index"  [(ngModel)]="brandsSelected[u]" (change)="brandSelected()">{{brand}}</mat-checkbox><br>
 	</section>
-	<!-- <section class="colors">	
-		<h5>Кольори</h5>		
-		<mat-checkbox class="category-colors" color="primary" *ngFor="let color of allColors"><div [ngStyle]="{background:color}"></div></mat-checkbox><br>
-	</section> -->
-
-
-
-
-			
-<button (click)="test()">TEST</button>
-	</div>
+</div>

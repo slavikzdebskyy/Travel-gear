@@ -33,7 +33,7 @@ export class ItemsService {
 		return new HttpHeaders ({
 			'Contetnt-Type' : 'application/json',
 			'Authorization' : 'some token',
-			// 'Access-Control-Allow-Origin' : '*'
+			'Access-Control-Allow-Origin' : '*'
 		});
 	}
 }

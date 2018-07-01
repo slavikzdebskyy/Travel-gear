@@ -92,8 +92,7 @@
 				color: white;
 				padding: 14px 20px;								
 				border: none;
-				cursor: pointer;
-				width: 40%;
+				cursor: pointer;				
 				opacity: 0.9;
 				float: left;
 				outline: none;			
@@ -101,58 +100,33 @@
 					opacity: 1;
 				}// button:hover
 			}// button
+			button {
+				width: 50%;
+			}// button
 		}//	.buttons-container
 	}//	form.Sign-up-form
 }//	.modal
 
-#message {
-	visibility: hidden;
-	min-width: 250px;
-	margin-left: -125px;
-	background-color: #b30000;
-	color: #fff;
-	text-align: center;
-	border-radius: 2px;
-	padding: 16px;
-	position: fixed;
-	z-index: 20;
-	left: 50%;
-	bottom: 60px; 	
-}//	#message
-.show-message-error {
-	visibility: visible!important; 
-	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-	animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}//	.show-message-error
-.show-message-done {
-	visibility: visible!important;
-	background-color: #00b300!important; 
-	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-	animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}//	.show-message-error
 
+@media screen and (max-width: 950px) {
+	.modal {	
+		form {
+			width: 300px;
+		}//	form
+	}//	modal
+}//	@media screen and (max-width: 950px)
 
-@-webkit-keyframes fadein {
-	from {bottom: 0; opacity: 0;} 
-	to {bottom: 60px; opacity: 1;}
-}
-
-@keyframes fadein {
-	from {bottom: 0; opacity: 0;}
-	to {bottom: 60px; opacity: 1;}
-}
-
-@-webkit-keyframes fadeout {
-	from {bottom: 60px; opacity: 1;} 
-	to {bottom: 0; opacity: 0;}
-}
-
-@keyframes fadeout {
-	from {bottom: 60px; opacity: 1;}
-	to {bottom: 0; opacity: 0;}
-}
-@media screen and (max-width: 300px) {
-	.cancelbtn, .signupbtn {
-		 width: 100%;
-	}
-}
+@media screen and (max-width: 400px) {
+	.modal {	
+		form {
+			.buttons-container{
+				justify-content: space-between;
+				flex-direction: column;
+				align-items: center;
+				button {
+					width: 90%;
+				}// button
+			}//	buttons-container
+		}//	form
+	}//	modal
+}//	@media screen and (max-width: 400px)

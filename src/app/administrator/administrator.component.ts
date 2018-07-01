@@ -44,12 +44,15 @@ export class AdministratorComponent implements OnInit {
 		if(this.newItemForm.value.promo === '') {
 			this.newItemForm.value.promo = false;
 		}
+		if(!this.newItemForm.value.subCategory){
+			this.newItemForm.value.subCategory = this.newItemForm.value.category;
+		}
 		this.itemService.saveItem(item).subscribe( res => {
 			console.log(res);
 			this.categorySelectVisible = false;
 			this.subCategorySelectVisible = false;
 			this.newItemForm.resetForm();
-		})	
+		});	
 	}
 
 	categoryVisible(event: MatSelectChange, i:number, j:number){

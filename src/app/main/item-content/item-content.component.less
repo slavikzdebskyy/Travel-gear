@@ -1,9 +1,31 @@
-.item-content{
+.item-content {
 	display: flex;
 	display: -webkit-flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: stretch;
 	min-height: 300px;
-	background: #f2f2f2
-}
+	background: #f2f2f2;
+	mat-paginator {
+		height: 50px;
+		width: 100%;
+		display: flex;
+		display: -webkit-flex;
+		justify-content: center;
+		background: no-repeat;
+		font-size: 16px;
+		margin: 5px 0 5px;
+	}//	mat-paginator
+}//	item-content
+
+@media only screen and (max-width: 800px) {
+	mat-paginator {
+		font-size: 14px;
+	}//	mat-paginator
+}//	@media only screen and (max-width: 800px)
+
+@media only screen and (max-width: 600px) {
+	.item-content {
+		padding-top: 70px;
+	}//item-content {
+}//	@media only screen and (max-width: 600px)

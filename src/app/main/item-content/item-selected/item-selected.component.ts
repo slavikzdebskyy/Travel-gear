@@ -23,10 +23,14 @@ export class ItemSelectedComponent implements OnInit, OnDestroy {
 	doubleItemMessageClass: string = '';
 	message :string = '';
 
-	constructor(private itemService: ItemsService, private route: ActivatedRoute,
-							private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer,
-							private bagService: BagService,  private auth: AuthLoginService, 
-							private userService: UserService, private headerDataService: HeaderDataService) { 
+	constructor(private itemService: ItemsService,
+							private route: ActivatedRoute,							
+							private bagService: BagService,
+							private auth: AuthLoginService, 
+							private userService: UserService,
+							private headerDataService: HeaderDataService,
+							iconRegistry: MatIconRegistry,
+							sanitizer: DomSanitizer,) { 
 		iconRegistry.addSvgIcon(
 			'stars',
 			sanitizer.bypassSecurityTrustResourceUrl('./assets/images/baseline-favorite_border-24px.svg'));

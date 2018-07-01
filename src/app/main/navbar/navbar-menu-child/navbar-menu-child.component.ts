@@ -12,15 +12,13 @@ export class NavbarMenuChildComponent implements OnInit {
 
 	@Input() 
 	items: NavItemInterface [];
-
 	@ViewChild('childMenu') 
 	public childMenu;
 
   constructor(private navbarService: NavbarService, private itemDetailService: ItemDetailsService) { }
 
-  ngOnInit() {
-		
-  }
+	ngOnInit() { }
+	
 	filteredByCategory(value){
 		let arr = [value];
 		this.itemDetailService.setCategorySelected(arr);

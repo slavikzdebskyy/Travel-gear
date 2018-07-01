@@ -9,7 +9,7 @@ private priceValue: number[] = [];
 private categorySelected: any[] = [];
 private subCategorySelected: string;
 private brandsSelected: any[] = [];
-
+ 
 
 getAllColors () {
 	return this.colors;

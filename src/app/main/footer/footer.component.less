@@ -37,7 +37,7 @@
 		justify-content: space-around;
 		align-items: center;
 		flex-wrap: wrap;
-		width: 200px;
+		max-width: 200px;		
 		.fa {
 			padding: 10px;
 			font-size: 30px;
@@ -54,3 +54,34 @@
 		}//	fa
 	}//	footer-social
 }//	container-footer
+
+@media only screen and (max-width: 800px) {
+	.container-footer {		
+		.footer-info,
+		.footer-about-us,
+		.footer-stores {
+			margin: 0 5px 0;
+			font-size: 16px;
+			h4 {
+				font-size: 18px;
+			}//	h4
+			ul {
+				line-height: 2;				
+			}//	ul
+		}//	footer-info, -about-us, -stores
+		.footer-social {			
+			.fa {
+				font-size: 22px;
+			}//	fa
+		}//	footer-social
+	}//	container-footer
+}//  @media only screen and (max-width: 800px)
+
+@media only screen and (max-width: 600px) {
+	.container-footer {		
+		flex-wrap: wrap;			
+		.footer-social {
+			min-width: 100%;
+		}//	footer-social
+	}//	container-footer
+}//  @media only screen and (max-width: 600px)

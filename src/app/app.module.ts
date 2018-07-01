@@ -38,13 +38,13 @@ import { AdministratorComponent } from './administrator/administrator.component'
 import { ItemDetailsService } from './Services/item.details.service';
 import { FooterComponent } from './main/footer/footer.component';
 import { HeaderDataService } from 'src/app/Services/header.data.service';
-import { FilterPipe } from 'src/app/main/item-content/filter.pipe';
+import { FilterPipe } from 'src/app/main/item-content/filter.paginator';
 import { FilterPipeByPrice } from 'src/app/main/item-content/filterbyprice.pipe';
 import { FilterPipeByCategory } from './main/item-content/filterbycategory.pipe';
 import { FilterPipeBySubCategory } from './main/item-content/filterbysubcategory.pipe';
 import { FilterPipeByBrands } from './main/item-content/filterbybrands.pipe';
-
-
+import { MatPaginatorModule } from '@angular/material/paginator';
+// import { MediaQueryDirective } from './media.query.directive';
 
 
 @NgModule({
@@ -70,7 +70,8 @@ import { FilterPipeByBrands } from './main/item-content/filterbybrands.pipe';
 		FilterPipeByPrice,
 		FilterPipeByCategory,
 		FilterPipeBySubCategory,
-		FilterPipeByBrands
+		FilterPipeByBrands,
+		// MediaQueryDirective
   ],
   imports: [
 		BrowserModule,
@@ -82,6 +83,7 @@ import { FilterPipeByBrands } from './main/item-content/filterbybrands.pipe';
 		MatSelectModule,
 		MatTabsModule,
 		MatToolbarModule,
+		MatPaginatorModule,
 		MatRadioModule,
 		MatCheckboxModule,
 		NoopAnimationsModule,
@@ -91,12 +93,12 @@ import { FilterPipeByBrands } from './main/item-content/filterbybrands.pipe';
 		AccordionModule,
 		AngularFontAwesomeModule,
 		HttpClientModule,
-		NouisliderModule	 
-		
+		NouisliderModule,		
 	],
 
 	providers: [ItemsService,	NavbarService, ItemDetailsService,
-							BagService,	UserService, AuthLoginService, HeaderDataService],
+							BagService,	UserService, AuthLoginService, HeaderDataService,
+							],
 							
   bootstrap: [AppComponent]
 })

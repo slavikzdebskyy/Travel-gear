@@ -3,6 +3,7 @@
 	display: flex;
 	display: -webkit-flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
 	align-items: center;	
 	background: #fff;
 	font-family: sans-serif;
@@ -11,8 +12,7 @@
 	color: #4d4d33;
 	transition: all 0.3s;	
 	img {
-		width: 550px;
-		height: 600px;
+		max-width: 550px;
 		margin: 5px;
 		}// img
 	.description {
@@ -21,7 +21,6 @@
 		justify-content: space-around;
 		flex-direction: column;
 		padding: 10px;	
-		min-height: 500px;
 		max-width: 500px;
 		p {
 			text-align: justify;
@@ -56,8 +55,8 @@
 				color: #b30000;
 				display: flex;
 				display: -webkit-flex;
-				width: 150px;
-				
+				flex-wrap: wrap;
+				width: 150px;				
 				span{
 					font-size: 14px;
 					padding: 0 5px 0;		
@@ -79,6 +78,7 @@
 		.brand {
 			display: flex;
 			display: -webkit-flex;
+			flex-wrap: wrap;
 			align-items: center;
 			margin: 10px 0 10px;
 			img {
@@ -96,7 +96,8 @@
 		.colors {
 			display: flex;
 			display: -webkit-flex;
-    	align-items: center;
+			align-items: center;
+			flex-wrap: wrap;
 			margin: 10px 0 10px;
 			ul {
 				display: inline-block;
@@ -129,56 +130,41 @@
 	}//	description
 }//	example-card
 
+@media only screen and (max-width: 1200px) {
+	.example-card {	
+		padding: 0;
+		img {
+			width: 400px;
+			}// img
+		.description {
+			padding: 0;
+			max-width: 500px;
+		}//	description
+	}//	example-card
+}//	@media only screen and (max-width: 1200px)
 
+@media only screen and (max-width: 1000px) {
+	.example-card {
+		img {
+			width: 350px;
+			}// img
+		.description {
+			max-width: 400px;
+		}//	description
+	}//	example-card
+}//	@media only screen and (max-width: 1000px)
 
-
-
-
-
-// #message {
-// 	visibility: hidden;
-// 	min-width: 250px;
-// 	margin-left: -125px;
-// 	background-color: #b30000;
-// 	color: #fff;
-// 	text-align: center;
-// 	border-radius: 2px;
-// 	padding: 16px;
-// 	position: fixed;
-// 	z-index: 5;
-// 	left: 50%;
-// 	bottom: 60px; 	
-// }//	#message
-// .show-message-error {
-// 	visibility: visible!important; 
-// 	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-// 	animation: fadein 0.5s, fadeout 0.5s 2.5s;
-// }//	.show-message-error
-// .show-message-done {
-// 	visibility: visible!important;
-// 	background-color: #00b300!important; 
-// 	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-// 	animation: fadein 0.5s, fadeout 0.5s 2.5s;
-// }//	.show-message-error
-
-
-// @-webkit-keyframes fadein {
-// 	from {bottom: 0; opacity: 0;} 
-// 	to {bottom: 60px; opacity: 1;}
-// }
-
-// @keyframes fadein {
-// 	from {bottom: 0; opacity: 0;}
-// 	to {bottom: 60px; opacity: 1;}
-// }
-
-// @-webkit-keyframes fadeout {
-// 	from {bottom: 60px; opacity: 1;} 
-// 	to {bottom: 0; opacity: 0;}
-// }
-
-// @keyframes fadeout {
-// 	from {bottom: 60px; opacity: 1;}
-// 	to {bottom: 0; opacity: 0;}
-// }
-
+@media only screen and (max-width: 850px) {
+	.example-card {	
+		flex-direction: column;
+		align-items: center;
+		padding: 10px;
+ 		img {
+			width: 350px;
+			}// img
+		.description {
+			align-items: center;
+			max-width: 600px;
+		}//	description
+	}//	example-card
+}//	@media only screen and (max-width: 850px)

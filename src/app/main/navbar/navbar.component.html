@@ -1,36 +1,13 @@
-
-<!-- <div class="container">
-	<accordion [showArrows]="true" [closeOthers]="false">		
-		<accordion-group *ngFor="let el of menuItems">
-				<accordion-heading>
-						<button mat-button >{{el.value}}</button>
-				</accordion-heading>
-				<accordion-group *ngFor="let subEl of el.children">
-						<accordion-heading>
-                <button mat-button class="submenu">{{subEl.value}}</button>
-            </accordion-heading>
-						<button mat-menu-item *ngFor="let item of subEl.children ">{{item.value}}</button>
-						<button mat-menu-item>{{item}}</button>							
-				</accordion-group>			
-		</accordion-group>			
-	</accordion>	
-</div>	 -->
-
-
-
-<mat-toolbar>
-			<span *ngFor="let item of menuItems">
-					<span *ngIf="item.children && item.children.length > 0">
-						<button mat-button [matMenuTriggerFor]="menu.childMenu">
-							{{item.value}}
-						</button>
-						<app-navbar-menu-child #menu [items]="item.children"></app-navbar-menu-child>
-					</span>
-					<span *ngIf="!item.children || item.children.length === 0">
-						<button mat-button color="primary">
-							{{item.value}}
-						</button>
-					</span>
-			</span>
+<mat-icon svgIcon="hidden-menu"  *ngIf="!media" (click)="showOrHideToolbarMenu()"></mat-icon>
+<mat-toolbar *ngIf="media" [class]="toolbarClassName">
+		<mat-icon class="menu" svgIcon="hidden-menu" (click)="showOrHideToolbarMenu()"></mat-icon>
+	<span *ngFor="let item of menuItems">
+		<span *ngIf="item.children && item.children.length > 0">
+			<button mat-button [matMenuTriggerFor]="menu.childMenu">
+				{{item.value}}
+			</button>
+			<app-navbar-menu-child #menu [items]="item.children"></app-navbar-menu-child>
+		</span>				
+	</span>
 </mat-toolbar>
 

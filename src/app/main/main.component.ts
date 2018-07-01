@@ -17,4 +17,5 @@ export class MainComponent implements OnInit, DoCheck {
 	ngDoCheck(): void {
 		this.filterSideBarVisible = this.headerDataService.getfilterSideBarVisible();
 	}	
+	
 }

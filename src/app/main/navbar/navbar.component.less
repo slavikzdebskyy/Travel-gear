@@ -1,51 +1,5 @@
-.container {
-	width: 200px;
-	min-height: 800px;
-	text-align: center;
-	background: #fff;
-	font-size: 16px;
-	font-weight: 700;
-	color: #4d4d33;
-	margin-top: 20px;
-	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2),
-							 0 2px 2px 0 rgba(0,0,0,.14), 
-							0 1px 5px 0 rgba(0,0,0,.12);
-	mat-option {
-		&:hover {
-			color:  #992600;
-		}
-	}
-	button {
-			white-space: normal;
-			line-height: 1;
-		&[mat-menu-item] {
-			background: #bfbfbf + 60%;
-			font-weight: 400;
-			font-size: 14px;
-		}
-		&[mat-button]{
-			background: #bfbfbf;
-			width: 100%;
-			height: 40px;
-			font-weight: 700;
-			color: #4d4d33;
-			&:hover {
-				background: #bfbfbf + 50%;
-			}			
-		}
-		&:hover {
-			color:  #992600;
-			background: #bfbfbf + 40%;
-		}
-	}// button
-
-	.submenu {
-		background: #bfbfbf + 30%!important;
-	}
-
-
-}//	container
 mat-toolbar {
+	position: relative;
 	padding: 0;
 	display: flex;
 	display: -webkit-flex;
@@ -53,6 +7,15 @@ mat-toolbar {
 	flex-wrap: wrap;
 	background: #669999 + 25%;	
 	height: auto;	
+	&.show {
+		animation: show 0.8s;
+		-webkit-animation: show 0.8s;
+	}// mat-toolbar.show
+	&.hide {
+		animation: hide 0.8s;
+		-webkit-animation: hide 0.8s;
+		opacity: 0;
+	}// mat-toolbar.hide
 	span {
 		button[mat-button] {
 			font-size: 16px;
@@ -70,3 +33,87 @@ mat-toolbar {
 		}//	button[mat-button]
 	}//	span
 }//	mat-toolbar
+
+mat-icon {
+	width: 40px;
+	height: 40px;
+	top: 55px;
+	color: #000;
+	position: fixed;
+	z-index: 10;
+	transition: 0.4s;
+	-webkit-transition: 0.4s;
+	cursor: pointer;
+	&.menu {
+		visibility: hidden;
+		position: absolute;
+		color: #fff;
+		top: 0;
+		right: 0;
+	}// mat-icon menu
+}// mat-icon
+
+
+@-webkit-keyframes show {
+	from {-webkit-transform: translateX(-300px);
+	opacity: 0;}
+	to {-webkit-transform: translateX(0px);
+	opacity: 1;}
+}
+@keyframes show {
+	from {transform: translateX(-300px);
+	opacity: 0;}
+	to {transform: translateX(0px);
+	opacity: 1;}
+}
+@-webkit-keyframes hide {
+	from {-webkit-transform: translateX(0px);
+	opacity: 1;}
+	to {-webkit-transform: translateX(-300px);
+	opacity: 0;}
+}
+@keyframes hide {
+	from {transform: translateX(0px);
+	opacity: 1;}
+	to {transform: translateX(-300px);
+		opacity: 0;}
+}
+
+
+@media only screen and (max-width: 850px) {
+	mat-toolbar {
+		span { 
+			button[mat-button] {
+				font-size: 14px;
+				font-weight: 400;
+				padding: 0;
+			}//	button[mat-button]
+		}//	span
+	}//	mat-toolbar
+}//  @media only screen and (max-width: 850px)
+
+@media only screen and (max-width: 600px) {
+	mat-toolbar {
+		position: fixed;
+		top: 55px;
+    z-index: 10;
+    width: 300px;
+    flex-direction: column;
+		align-items: flex-start;
+		mat-icon.menu {
+			visibility: visible;
+		}	//mat-icon.menu	
+	}//	mat-toolbar
+}//  @media only screen and (max-width: 600px)
+
+
+
+
+
+
+
+
+
+
+
+

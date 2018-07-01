@@ -1,32 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { ItemsService } from '../../Services/items.service';
 import { NavbarService } from '../../Services/navbar.service';
 import { ItemDetailsService } from '../../Services/item.details.service';
 import { Item } from '../../models/item.model';
 import { HeaderDataService } from '../../Services/header.data.service';
 
-
 @Component({
   selector: 'app-filter-sidebar',
   templateUrl: './filter-sidebar.component.html',
   styleUrls: ['./filter-sidebar.component.less']
 })
-export class FilterSidebarComponent implements OnInit {
+export class FilterSidebarComponent implements OnInit, DoCheck {
 
 	priceMax: number;
-	priceValue: number[] = [0, 1000];	
+	priceValue: number[] = [0, 1000];
+	priceValueFilter: number[] = [];
+	categorySelectedFilter: any[] = [];
+	subCategoryFilter: string;
+	brandSelectedFilter: any[] = [];
 	subCategoryIndex: number;
-	subCategory: boolean[]=[];
-	allColors: any[]=[];
-	allBrands: any[]=[];
+	subCategory: boolean[] = [];
+	allColors: any[] = [];
+	allBrands: any[] = [];
 	items: Item[];
 	brandsSelected: boolean[] = [];
 	menuItems: any[];
 
-	constructor(private itemService: ItemsService, private navbarService: NavbarService,
-							private itemDetailService: ItemDetailsService) {
-		
-	 }
+	constructor(private itemService: ItemsService,
+							private navbarService: NavbarService,
+							private itemDetailService: ItemDetailsService) {}
 
   ngOnInit() {	
 		this.menuItems = this.navbarService.getMenuItems();
@@ -39,6 +41,23 @@ export class FilterSidebarComponent implements OnInit {
 				this.allBrands = this.getAllProperty('brand');
 			});	
 		this.allColors = this.itemDetailService.getAllColors();
+	}
+
+	ngDoCheck () {
+		this.categorySelectedFilter = this.itemDetailService.getCategorySelected();
+		this.subCategoryFilter = this.itemDetailService.getSubCategorySelected();	
+	}
+
+	resetFilters () {
+		this.priceValue =  [0, this.priceMax];
+		this.priceValueFilter = [];
+		this.itemDetailService.setPriceValue(this.priceValue);		
+		this.subCategory = [];
+		this.itemDetailService.setCategorySelected(this.subCategory);
+		this.itemDetailService.setSubCategorySelected('');
+		this.brandsSelected = [];
+		this.brandSelectedFilter = [];
+		this.itemDetailService.setBrandsSelected(this.brandsSelected);
 	}
 
 	getMaxPrice (): number {
@@ -96,6 +115,7 @@ export class FilterSidebarComponent implements OnInit {
 
 	rangePriceChanged () {
 		this.itemDetailService.setPriceValue(this.priceValue);
+		this.priceValueFilter = this.itemDetailService.getPriceValue();
 	}
 
 	categorySelected () {
@@ -106,7 +126,8 @@ export class FilterSidebarComponent implements OnInit {
 				result.push(arr[i].value);
 			}
 		}
-		this.itemDetailService.setCategorySelected(result);		
+		this.itemDetailService.setCategorySelected(result);
+		this.categorySelectedFilter = result;		
 	}
 
 	brandSelected () {
@@ -117,7 +138,7 @@ export class FilterSidebarComponent implements OnInit {
 			}
 		}
 		this.itemDetailService.setBrandsSelected(result);
-		// console.log(this.itemDetailService.getBrandsSelected());
+		this.brandSelectedFilter = result;
 	}
 
 }
